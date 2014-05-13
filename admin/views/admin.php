@@ -25,9 +25,9 @@
 				
 		$url  = plugins_url('newsletter.php', __FILE__);
 		
-		// $body_html = $grab->getPage($url);
+		 $body_html = $grab->getPage($url);
 		
-		// echo $body_html;
+		echo $body_html;
 		
 		// Params
 		$fromName  = 'Cindy Leschaud';

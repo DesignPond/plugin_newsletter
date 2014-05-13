@@ -37,9 +37,6 @@ if ( ! defined( 'WPINC' ) ) {
 
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-dd_newsletter.php' );
 
-// Utilities
-require_once( plugin_dir_path( __FILE__ ) . 'admin/simple_html_dom.php' );
-
 // bootstrap classes
 require_once( plugin_dir_path( __FILE__ ) . 'bootstrap.php' );
 
@@ -48,12 +45,27 @@ require_once( plugin_dir_path( __FILE__ ) . 'bootstrap.php' );
  * When the plugin is deleted, the uninstall.php file is loaded.
  *
  */
-register_activation_hook( __FILE__, array( 'DD_Newsletter', 'activate' ) );
+ 
+register_activation_hook( __FILE__  , array( 'DD_Newsletter', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'DD_Newsletter', 'deactivate' ) );
 
-add_action( 'plugins_loaded', array( 'DD_Newsletter', 'get_instance' ) );
+register_activation_hook( __FILE__  , 'add_schedule' );
+register_deactivation_hook( __FILE__, 'clear_schedule');
 
+add_action( 'plugins_loaded', array( 'DD_Newsletter', 'get_instance' ) );
 add_shortcode('unsuscribe_newsletter', array( 'DD_Newsletter', 'unsuscribe_newsletter_shortcode' ) );
+
+function add_schedule()
+{
+	wp_schedule_event( time(), 'daily', 'my_daily_event' );
+}
+
+function clear_schedule()
+{
+	wp_clear_scheduled_hook('my_daily_event');
+}
+
+
 
 /*----------------------------------------------------------------------------*
  * Dashboard and Administrative Functionality

@@ -59,12 +59,20 @@ class Send {
                       
 	}
 	
-	public function deleteUserFromList($email,$list){
+	public function addOrDeleteUserFromList($email,$list,$newsletter){
 		
 		$fields_string = '';
 		
 		//set url
-		$url = 'https://api.elasticemail.com/lists/remove-contact';
+		if($newsletter == 'suscribe')
+		{
+			$url = 'https://api.elasticemail.com/lists/create-contact';		
+		}
+		
+		if($newsletter == 'unsuscribe')
+		{
+			$url = 'https://api.elasticemail.com/lists/remove-contact';	
+		}
 		
 		//set POST variables
 		$fields = array(
@@ -86,14 +94,15 @@ class Send {
 		curl_setopt($ch,CURLOPT_URL,$url);
 		curl_setopt($ch,CURLOPT_POST,count($fields));
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
 		
 		//execute post
-		$result = curl_exec($ch);
-		
-		//close connection
+		$result = curl_exec($ch)	;
+			
 		curl_close($ch);
 		
-		return $result;
+		return $result;	
+
 	}
 	
 	

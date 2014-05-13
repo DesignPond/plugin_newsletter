@@ -83,6 +83,8 @@ class DD_Newsletter {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		
 		add_action( 'admin_post_submit-form', array( $this, '_unsuscribe_nl' ) );
+				
+		add_action( 'my_daily_event', array( $this, 'send_newsletter' ) );
 		
 		$this->send = new Send();
 	}
@@ -231,6 +233,13 @@ class DD_Newsletter {
 		return $wpdb->get_col( $sql );
 
 	}
+	
+	
+	public function send_newsletter() {
+		
+		wp_mail('cindy.leschaud@gmail.com', 'Test de send newsletter', 'Depuis le plugin dd_newsletter ');
+	}
+
 
 	/**
 	 * Fired for each blog when the plugin is activated.
@@ -247,7 +256,6 @@ class DD_Newsletter {
 	 * @since    1.0.0
 	 */
 	private static function single_deactivate() {
-		// @TODO: Define deactivation functionality here
 	}
 
 	/**
@@ -288,18 +296,66 @@ class DD_Newsletter {
 	*/	
 	public static function unsuscribe_newsletter_shortcode( $atts ) {
 	   	
-	   	$action = admin_url( 'admin-post.php');
+	   	$args     = shortcode_atts( array('newsletter' => 'suscribe' ), $atts );
 	   	
-	   	$html  = '<div id="unsuscribe_newsletter">';
-	   	$html .= '<h3>Se désinscrire de la newsletter "Derniers arrêts proposés pour le publication"</h3>';
-	    $html .= '<form action="'.$action.'" method="post">';
-	    
-		    $html .= '<input type="hidden" name="action" value="submit-form" />';
-			$html .= '<input type="hidden" name="unsuscribe_newsletter" value="ok" />';
-		    $html .= '<input type="text" name="email" />';
-		    $html .= '<input type="submit" value="envoyer" />';
+	   	$action   = admin_url( 'admin-post.php');
+	   	
+	   	$redirect = get_permalink();
+	   	
+	   	$html     = '';
+	   	
+	   	if(isset($_GET['unsuscribe']))
+	   	{
+	   		if($_GET['unsuscribe'] == 'ok')
+	   		{
+		   		$html .= '<p style="display:block;padding:5px;background:#bfffc2;color:#105513;">Vous avez bien été désinscrit de la newsletter!</p>';	
+	   		}
+	   		else
+	   		{
+		   		$html .= '<p style="display:block;padding:5px;background:#fbbdbd;color:#551010;">Problème avec la désinscription, cette adresse email n\'existe pas</p>';
+	   		}	   			
+	   	}
+	   	
+	   	if(isset($_GET['suscribe']))
+	   	{
+	   		if($_GET['suscribe'] == 'ok')
+	   		{
+		   		$html .= '<p style="display:block;padding:5px;background:#bfffc2;color:#105513;">Vous avez bien été inscrit à la newsletter!</p>';	
+	   		}
+	   		else
+	   		{
+		   		$html .= '<p style="display:block;padding:5px;background:#fbbdbd;color:#551010;">Cette adresse email existe déjà / n\'est pas valide</p>';
+	   		}	   			
+	   	}
+
+	   	if(isset($_GET['ohoh']))
+	   	{
+		   	$html .= '<p style="display:block;padding:5px;background:#fbbdbd;color:#551010;">Cette adresse email n\'est pas valide.</p>';	   		   			
+	   	}
+	   		   		   	
+	   	$html .= '<div id="'.$args['newsletter'].'">';
+	   	
+	   	// Test if we what to suscribe or to unsuscribe from the newsletter
+	   	if($args['newsletter'] == 'suscribe')
+	   	{
+	   		$html .= '<h3>S\'inscrire à la newsletter "Derniers arrêts proposés pour la publication"</h3>';
+	   		$html .= '<form action="'.$action.'" method="post">'; 
+			$html .= '<input type="hidden" name="newsletter" value="suscribe" />';
+			$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
+	   	}
+	   	else
+	   	{
+	   		$html .= '<h3>Se désinscrire de la newsletter "Derniers arrêts proposés pour la publication"</h3>';
+	   		$html .= '<form action="'.$action.'" method="post">'; 
+			$html .= '<input type="hidden" name="newsletter" value="unsuscribe" />';
+			$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
+	   	}
+			
+		$html .= '<input type="hidden" name="action" value="submit-form" />';
+		$html .= '<input type="text" name="email" />';
+		$html .= '<input type="submit" value="envoyer" />';
 		    
-	    $html .= '</form>';
+		$html .= '</form>';	    
 	    $html .= '</div>';  
 	    
 	    return $html;
@@ -307,9 +363,48 @@ class DD_Newsletter {
     	
 	public function _unsuscribe_nl(){
 		
-		if( isset($_POST['email'])  )
+		if( isset($_POST['email']) &&  !empty($_POST['email']))
 		{
-			echo $this->send->deleteUserFromList($_POST['email'],'test');
+			// test what we have to do!!! suscribe or unsuscribe
+			$attemp = $this->send->addOrDeleteUserFromList($_POST['email'], 'test' , $_POST['newsletter']);
+						
+			if ( $_POST['newsletter'] == 'unsuscribe' ) 
+			{
+				if(strpos($attemp,'removed') !== false)
+				{
+					$where = array('unsuscribe' => 'ok');
+				}
+				else
+				{
+					$where = array('unsuscribe' => 'no');		    
+				}
+			}	
+			else if ( $_POST['newsletter'] == 'suscribe' ) 
+			{
+				if( strpos($attemp,'created') !== false || strpos($attemp,'updated') !== false )
+				{
+					$where = array('suscribe' => 'ok');
+				}
+				else
+				{
+					$where = array('suscribe' => 'no');		    
+				}				
+			}
+			
+			
+			$url = add_query_arg( $where , $_POST['redirect'] );
+			
+			wp_redirect( $url ); 			    
+			exit;
+			
+		}
+		else
+		{
+
+			$url = add_query_arg( array('ohoh' => 'problem') , $_POST['redirect'] );
+			
+			wp_redirect( $url ); 			    
+			exit;
 		}
 	}
 

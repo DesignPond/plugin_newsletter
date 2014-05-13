@@ -1,14 +1,10 @@
 <?php 
 
 class Grab {
-
-	protected $html;
 	
 	protected $user_agent;
 
 	function __construct() {
-	
-		$this->html = new simple_html_dom();
 		
 		$this->user_agent = "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)";
 		

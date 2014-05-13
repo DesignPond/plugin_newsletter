@@ -29,7 +29,7 @@
     	
 	    body{
             width: 100%; 
-            background-color: #ffffff; 
+            background-color: #fafafa; 
             margin:0; 
             padding:0; 
             -webkit-font-smoothing: antialiased;
@@ -238,7 +238,7 @@
 	                			<tr bgcolor="ffffff"><td height="14"></td></tr>
 	                			
 	                			<tr bgcolor="ffffff"><td align="center">
-	                				<img style="display: block;" mc:edit="main-img" class="main-image" width="538" height="180" src="<?php echo $url; ?>img/main-img.png" alt="large image" />
+	                				<img style="display: block;" mc:edit="main-img" class="main-image" width="538" height="180" src="<?php echo $url; ?>img/main-img.png" alt="derniers publications du TF" />
 	                			</td></tr>
 	                			
 	                			<tr bgcolor="ffffff"><td height="20"></td></tr>

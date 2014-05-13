@@ -59,5 +59,42 @@ class Send {
                       
 	}
 	
+	public function deleteUserFromList($email,$list){
+		
+		$fields_string = '';
+		
+		//set url
+		$url = 'https://api.elasticemail.com/lists/remove-contact';
+		
+		//set POST variables
+		$fields = array(
+			'username' =>urlencode($this->username),
+			'api_key'  =>urlencode($this->apikey),
+			'email'    =>urlencode($email),
+			'listname' =>urlencode($list)
+		);
+		
+		//url-ify the data for the POST
+		foreach($fields as $key => $value) { $fields_string .= $key.'='.$value.'&'; }
+		
+		rtrim($fields_string,'&');
+		
+		//open connection
+		$ch = curl_init();
+		
+		//set the url, number of POST vars, POST data
+		curl_setopt($ch,CURLOPT_URL,$url);
+		curl_setopt($ch,CURLOPT_POST,count($fields));
+		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+		
+		//execute post
+		$result = curl_exec($ch);
+		
+		//close connection
+		curl_close($ch);
+		
+		return $result;
+	}
+	
 	
 }

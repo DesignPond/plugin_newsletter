@@ -80,14 +80,9 @@ class DD_Newsletter_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-		/*
-		 * Define custom functionality.
-		 *
-		 * Read more about actions and filters:
-		 * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-		 */
-		add_action( '@TODO', array( $this, 'action_method_name' ) );
-		add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+		// Create end-points
+		add_filter('query_vars', array($this, 'query_vars'));
+		add_action('parse_request', array($this, 'parse_request'));
 
 	}
 
@@ -220,7 +215,7 @@ class DD_Newsletter_Admin {
 		);
 
 	}
-
+	
 	/**
 	 * NOTE:     Actions are points in the execution of a page or process
 	 *           lifecycle that WordPress fires.

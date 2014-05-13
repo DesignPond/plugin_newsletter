@@ -7,7 +7,12 @@
  * @license   GPL-2.0+
  * @link      http://example.com
  * @copyright 2014 Your Name or Company Name
- */
+ */ 
+ 
+ define( 'PLUGIN_DIR', dirname(dirname(__FILE__)).'/' );  
+ 
+ require_once(PLUGIN_DIR . 'admin/classes/Send.php');
+
 
 /**
  * Plugin class. This class should ideally be used to work with the
@@ -56,6 +61,8 @@ class DD_Newsletter {
 	 * @var      object
 	 */
 	protected static $instance = null;
+	
+	protected $send;
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -74,13 +81,10 @@ class DD_Newsletter {
 		// Load public-facing style sheet and JavaScript.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
-		/* Define custom functionality.
-		 * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-		 */
-		//add_action( '@TODO', array( $this, 'action_method_name' ) );
-		//add_filter( '@TODO', array( $this, 'filter_method_name' ) );
-
+		
+		add_action( 'admin_post_submit-form', array( $this, '_unsuscribe_nl' ) );
+		
+		$this->send = new Send();
 	}
 
 	/**
@@ -278,6 +282,37 @@ class DD_Newsletter {
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_slug . '-plugin-script', plugins_url( 'assets/js/public.js', __FILE__ ), array( 'jquery' ), self::VERSION );
 	}
+	
+	/**
+	 * Shortcodes
+	*/	
+	public static function unsuscribe_newsletter_shortcode( $atts ) {
+	   	
+	   	$action = admin_url( 'admin-post.php');
+	   	
+	   	$html  = '<div id="unsuscribe_newsletter">';
+	   	$html .= '<h3>Se désinscrire de la newsletter "Derniers arrêts proposés pour le publication"</h3>';
+	    $html .= '<form action="'.$action.'" method="post">';
+	    
+		    $html .= '<input type="hidden" name="action" value="submit-form" />';
+			$html .= '<input type="hidden" name="unsuscribe_newsletter" value="ok" />';
+		    $html .= '<input type="text" name="email" />';
+		    $html .= '<input type="submit" value="envoyer" />';
+		    
+	    $html .= '</form>';
+	    $html .= '</div>';  
+	    
+	    return $html;
+	}
+    	
+	public function _unsuscribe_nl(){
+		
+		if( isset($_POST['email'])  )
+		{
+			echo $this->send->deleteUserFromList($_POST['email'],'test');
+		}
+	}
+
 
 	/**
 	 * NOTE:  Actions are points in the execution of a page or process
@@ -289,7 +324,7 @@ class DD_Newsletter {
 	 * @since    1.0.0
 	 */
 	public function action_method_name() {
-		// @TODO: Define your action hook callback here
+	
 	}
 
 	/**

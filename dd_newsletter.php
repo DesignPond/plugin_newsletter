@@ -53,6 +53,8 @@ register_deactivation_hook( __FILE__, array( 'DD_Newsletter', 'deactivate' ) );
 
 add_action( 'plugins_loaded', array( 'DD_Newsletter', 'get_instance' ) );
 
+add_shortcode('unsuscribe_newsletter', array( 'DD_Newsletter', 'unsuscribe_newsletter_shortcode' ) );
+
 /*----------------------------------------------------------------------------*
  * Dashboard and Administrative Functionality
  *----------------------------------------------------------------------------*/

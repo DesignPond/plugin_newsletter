@@ -20,12 +20,26 @@
 	<?php
 	
 		$grab = new Grab();
+		
+		$send = new Send();
 				
-		$url  =  plugins_url('newsletter.php', __FILE__);
+		$url  = plugins_url('newsletter.php', __FILE__);
 		
-		$body_html = $grab->getPage($url);
+		// $body_html = $grab->getPage($url);
 		
-		echo $body_html;
+		// echo $body_html;
+		
+		// Params
+		$fromName  = 'Cindy Leschaud';
+		$from      = 'cindy.leschaud@gmail.com';
+		$to        = 'cindy.leschaud@gmail.com';
+		$list      = 'myself';
+		$subject   = 'Newsletter | Droit pour le Praticien';
+		$body_text = NULL;
+
+		//echo $send->sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName, $list);
+		
+		// echo admin_url( 'options-general.php?page=dd_newsletter');
 		
 	?>
 

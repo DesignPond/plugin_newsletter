@@ -64,6 +64,23 @@
 		
 		</form>
 		
+		<h3>Envoyer test</h3>	
+		
+		<form method="post" action="admin-post.php">
+		    
+		    <table class="form-table">
+		        <tr valign="top">
+		        <th scope="row">Email</th>
+		        <td width="200px">
+		        	<input type="hidden" name="action" value="send-test" />
+		        	<input type="text" name="email" />
+		        </td>
+		        <td><input type="submit" value="Envoyer le test" class="button button-primary" id="submit" name="submit"></td>
+		        </tr>
+		    </table>
+		
+		</form>
+		
 		<h3>Archives</h3>
 		
 		<?php

@@ -90,8 +90,13 @@ class DD_Newsletter {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		
+		// Suscribe and unsuscribe shortcode function
 		add_action( 'admin_post_submit-form', array( $this, '_unsuscribe_nl' ) );
-				
+
+		// Send test email
+		add_action( 'admin_post_send-test', array( $this, '_send_test_nl' ) );
+		
+		// Cron job		
 		add_action( 'my_daily_event', array( $this, 'send_newsletter' ) );
 		
 		$this->send       = new Send();
@@ -489,21 +494,25 @@ class DD_Newsletter {
 					$where = array('suscribe' => 'no');		    
 				}				
 			}
-			
-			
+						
 			$url = add_query_arg( $where , $_POST['redirect'] );
-			
-			wp_redirect( $url ); 			    
-			exit;
-			
+				
 		}
 		else
 		{
-
 			$url = add_query_arg( array('ohoh' => 'problem') , $_POST['redirect'] );
-			
-			wp_redirect( $url ); 			    
-			exit;
+		}	
+					
+		wp_redirect( $url ); 			    
+		exit;
+		
+	}
+	
+	public function _send_test_nl(){
+	
+		if( isset($_POST['email']) &&  !empty($_POST['email']))
+		{
+			echo 'ok';
 		}
 	}
 

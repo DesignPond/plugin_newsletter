@@ -61,8 +61,6 @@ class Send {
 	
 	public function addOrDeleteUserFromList($email,$list,$newsletter){
 		
-		$fields_string = '';
-		
 		//set url
 		if($newsletter == 'suscribe')
 		{
@@ -81,6 +79,28 @@ class Send {
 			'email'    =>urlencode($email),
 			'listname' =>urlencode($list)
 		);
+		
+		return $this->curlUrl($url,$fields);
+
+	}
+	
+	public function getStatForNewsletter($newsletter_id){
+		
+		//set url
+		$url = 'https://api.elasticemail.com/mailer/status/'.$newsletter_id;		
+		
+		//set POST variables
+		$fields = array(
+			'showstats' => 'true'
+		);
+		
+		return $this->curlUrl($url,$fields);
+
+	}
+	
+	public function curlUrl($url,$fields){
+				
+		$fields_string = '';
 		
 		//url-ify the data for the POST
 		foreach($fields as $key => $value) { $fields_string .= $key.'='.$value.'&'; }
@@ -102,15 +122,13 @@ class Send {
 		curl_close($ch);
 		
 		return $result;	
-
 	}
 	
 	public function testIdSend($string)
 	{
-		$string  = preg_replace('/ {2,}/',' ',$string);
-		
-		$string  = str_replace("\r", "", $string);
-		$string  = str_replace("\n", "", $string);
+		$string  = trim($string);
+		$string  = str_replace("\r", " ", $string);
+		$string  = str_replace("\n", " ", $string);
 
 		$explode = explode(' ', $string);		
 		$explode = array_filter($explode);			

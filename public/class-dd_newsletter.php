@@ -67,6 +67,10 @@ class DD_Newsletter {
 	protected $grab;
 	
 	protected $database;
+	
+	protected $newsletter;
+	
+	protected $log;
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -90,11 +94,15 @@ class DD_Newsletter {
 				
 		add_action( 'my_daily_event', array( $this, 'send_newsletter' ) );
 		
-		$this->send     = new Send();
+		$this->send       = new Send();
 		
-		$this->grab     = new Grab();
+		$this->grab       = new Grab();
 		
-		$this->database = new Database();	
+		$this->database   = new Database();
+		
+		$this->newsletter = new Newsletter();	
+		
+		$this->log        = new Log;
 	}
 
 	/**
@@ -242,27 +250,39 @@ class DD_Newsletter {
 	
 	public function send_newsletter(){
 		
-		// weeke day range for query last week's arrets
-		$dates  = $this->database->getWeekDays();
+		// Test if newsletter has already been sent
+		$today = date('Y-m-d');
 		
-		// Get arrets
-		$arrets = $this->database->getArretsAndCategoriesForDates($dates);
+		$last  = $this->newsletter->lastNewsletterSend();
 		
-		if(!empty($arrets))
-		{			
-			if($this->sending())
-			{
-				wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Newsletter envoyé!');
+		if($today > $last)
+		{
+			// weeke day range for query last week's arrets
+			$dates  = $this->database->getWeekDays();
+			
+			// Get arrets
+			$arrets = $this->database->getArretsAndCategoriesForDates($dates);
+			
+			if(!empty($arrets))
+			{			
+				if($this->sending())
+				{
+					wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Newsletter envoyé!');
+				}
+				else
+				{
+					wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Problème avec la newsletter');
+				}
 			}
 			else
 			{
-				wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Problème avec la newsletter');
-			}
+				wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Pas d\'arrets pour la publication à envoyer dans la newsletter');
+			}				
 		}
-		else
-		{
-			wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Pas d\'arrets pour la publication a envoyer dans la newsletter');
-		}		
+		
+		// LOGGING
+		$this->log->write('Déjà envoyé aujourd\'hui : '.$today);
+		// END LOGGIN
 		
 	}
 	

@@ -20,7 +20,6 @@
 	$ladate = $database->arrangeDate($dates);
 	
 ?>
-
 <!DOCTYPE HTML>
 <html>
 <head>

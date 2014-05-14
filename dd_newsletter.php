@@ -85,6 +85,9 @@ function clear_schedule()
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-dd_newsletter-admin.php' );
+	
 	add_action( 'plugins_loaded', array( 'DD_Newsletter_Admin', 'get_instance' ) );
+	
+	register_activation_hook( __FILE__, array( 'DD_Newsletter_Admin', 'dd_create_plugin_tables' ) );
 
 }

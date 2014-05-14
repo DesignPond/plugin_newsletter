@@ -75,15 +75,34 @@ class DD_Newsletter_Admin {
 
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+		
+		add_action( 'admin_init', array( $this, 'register_mysettings' ) );
 
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-		// Create end-points
-		add_filter('query_vars', array($this, 'query_vars'));
-		add_action('parse_request', array($this, 'parse_request'));
 
+	}
+	
+	public static function dd_create_plugin_tables(){
+	
+		global $wpdb;
+		
+		$table_name = $wpdb->prefix . 'dd_newsletter';
+
+	    $sql = "CREATE TABLE $table_name (
+	      id int(11) NOT NULL AUTO_INCREMENT,
+	      newsletter_id varchar(255) DEFAULT NULL,
+	      send DATE,
+	      newsletter TEXT,
+	      UNIQUE KEY id (id)
+	    );";
+	
+	    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+	    
+	    dbDelta( $sql );
+    
 	}
 
 	/**
@@ -189,6 +208,11 @@ class DD_Newsletter_Admin {
 			array( $this, 'display_plugin_admin_page' )
 		);
 
+	}
+	
+	public function register_mysettings() {
+	    //register our settings
+	    register_setting( 'dd-settings-group', 'dd_newsletter_list' );
 	}
 
 	/**

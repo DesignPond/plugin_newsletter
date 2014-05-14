@@ -1,1 +1,15 @@
 /* This stylesheet is used to style the public-facing components of the plugin. */
+
+.dd_success{
+	display:block;
+	padding:5px;
+	background:#bfffc2;
+	color:#105513;
+}
+
+.dd_error{
+	display:block;
+	padding:5px;
+	background:#fbbdbd;
+	color:#551010;
+}

@@ -63,6 +63,10 @@ class DD_Newsletter {
 	protected static $instance = null;
 	
 	protected $send;
+	
+	protected $grab;
+	
+	protected $database;
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -86,7 +90,11 @@ class DD_Newsletter {
 				
 		add_action( 'my_daily_event', array( $this, 'send_newsletter' ) );
 		
-		$this->send = new Send();
+		$this->send     = new Send();
+		
+		$this->grab     = new Grab();
+		
+		$this->database = new Database();	
 	}
 
 	/**
@@ -226,18 +234,84 @@ class DD_Newsletter {
 		global $wpdb;
 
 		// get an array of blog ids
-		$sql = "SELECT blog_id FROM $wpdb->blogs
-			WHERE archived = '0' AND spam = '0'
-			AND deleted = '0'";
+		$sql = "SELECT blog_id FROM $wpdb->blogs WHERE archived = '0' AND spam = '0' AND deleted = '0'";
 
 		return $wpdb->get_col( $sql );
 
 	}
 	
-	
-	public function send_newsletter() {
+	public function send_newsletter(){
 		
-		wp_mail('cindy.leschaud@gmail.com', 'Test de send newsletter', 'Depuis le plugin dd_newsletter ');
+		// weeke day range for query last week's arrets
+		$dates  = $this->database->getWeekDays();
+		
+		// Get arrets
+		$arrets = $this->database->getArretsAndCategoriesForDates($dates);
+		
+		if(!empty($arrets))
+		{			
+			if($this->sending())
+			{
+				wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Newsletter envoyé!');
+			}
+			else
+			{
+				wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Problème avec la newsletter');
+			}
+		}
+		else
+		{
+			wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Pas d\'arrets pour la publication a envoyer dans la newsletter');
+		}		
+		
+	}
+	
+	public function sending() {
+		
+		// Get url to newsletter
+		$url = plugins_url('views/newsletter.php', __FILE__ );	
+		
+		// Get newsletter html from newsletter.php 
+		$body_html = $this->grab->getPage($url);
+		
+		$list      = get_option('dd_newsletter_list'); 
+		
+		// Params
+		$fromName  = 'Droit pour le Praticien';
+		$from      = 'info@droitpourlepraticien.ch';
+		$to        = 'cindy.leschaud@gmail.com';
+		$subject   = 'Newsletter | Droit pour le Praticien';
+		$body_text =  NULL;
+		
+		// send with elasticemail
+		$result    = $this->send->sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName, $list);
+		
+		$newsletter_id = $this->send->testIdSend($result);
+		
+		if($newsletter_id)
+		{
+			// Newsletter is send!			
+			// Update database with infos
+			$this->updateNewsletterIsSend($newsletter_id,$body_html);
+			
+			// Everything ok!
+			return true;
+		}
+
+		return false;	
+
+	}
+	
+	public function updateNewsletterIsSend($newsletter_id,$body_html){
+		
+		global $wpdb;
+		
+		$table_name = $wpdb->prefix . 'dd_newsletter';
+
+	    $wpdb->insert($table_name, 
+	        array( 'newsletter_id' => $newsletter_id, 'send' => date('Y-m-d') , 'newsletter' => $body_html )
+	    );
+		
 	}
 
 
@@ -279,7 +353,9 @@ class DD_Newsletter {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
+	
 		wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
+		
 	}
 
 	/**
@@ -288,7 +364,9 @@ class DD_Newsletter {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
+	
 		wp_enqueue_script( $this->plugin_slug . '-plugin-script', plugins_url( 'assets/js/public.js', __FILE__ ), array( 'jquery' ), self::VERSION );
+		
 	}
 	
 	/**
@@ -308,29 +386,30 @@ class DD_Newsletter {
 	   	{
 	   		if($_GET['unsuscribe'] == 'ok')
 	   		{
-		   		$html .= '<p style="display:block;padding:5px;background:#bfffc2;color:#105513;">Vous avez bien été désinscrit de la newsletter!</p>';	
+		   		$html .= '<p class="dd_success">Vous avez bien été désinscrit de la newsletter!</p>';	
 	   		}
 	   		else
 	   		{
-		   		$html .= '<p style="display:block;padding:5px;background:#fbbdbd;color:#551010;">Problème avec la désinscription, cette adresse email n\'existe pas</p>';
-	   		}	   			
+		   		$html .= '<p class="dd_error">Problème avec la désinscription, cette adresse email n\'existe pas</p>';
+	   		}
+	   			   			
 	   	}
 	   	
 	   	if(isset($_GET['suscribe']))
 	   	{
 	   		if($_GET['suscribe'] == 'ok')
 	   		{
-		   		$html .= '<p style="display:block;padding:5px;background:#bfffc2;color:#105513;">Vous avez bien été inscrit à la newsletter!</p>';	
+		   		$html .= '<p class="dd_success">Vous avez bien été inscrit à la newsletter!</p>';	
 	   		}
 	   		else
 	   		{
-		   		$html .= '<p style="display:block;padding:5px;background:#fbbdbd;color:#551010;">Cette adresse email existe déjà / n\'est pas valide</p>';
+		   		$html .= '<p class="dd_error">Cette adresse email existe déjà / n\'est pas valide</p>';
 	   		}	   			
 	   	}
 
 	   	if(isset($_GET['ohoh']))
 	   	{
-		   	$html .= '<p style="display:block;padding:5px;background:#fbbdbd;color:#551010;">Cette adresse email n\'est pas valide.</p>';	   		   			
+		   	$html .= '<p class="dd_error">Cette adresse email n\'est pas valide.</p>';	   		   			
 	   	}
 	   		   		   	
 	   	$html .= '<div id="'.$args['newsletter'].'">';

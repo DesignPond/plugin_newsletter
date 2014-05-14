@@ -1,16 +1,22 @@
 <?php
 	
+	// require wordpress bootstrap
 	require_once( $_SERVER["DOCUMENT_ROOT"].'/wp-load.php' );
 	
+	// assets url for images and links
 	$url   = plugins_url().'/dd_newsletter/assets/';	
 	$home  = home_url();
 	
+	// database functions
 	$database = new Database();	
 	
+	// weeke day range for query last week's arrets
 	$dates  = $database->getWeekDays();
 	
+	// Get arrets
 	$arrets = $database->getArretsAndCategoriesForDates($dates);
 	
+	// title dates of week
 	$ladate = $database->arrangeDate($dates);
 	
 ?>

@@ -105,5 +105,29 @@ class Send {
 
 	}
 	
+	public function testIdSend($string)
+	{
+		$string  = preg_replace('/ {2,}/',' ',$string);
+		
+		$string  = str_replace("\r", "", $string);
+		$string  = str_replace("\n", "", $string);
+
+		$explode = explode(' ', $string);		
+		$explode = array_filter($explode);			
+		$end     = end($explode);
+		
+		$end     = preg_replace('/ {2,}/',' ',$end);
+		$end     = trim($end);
+					
+		$matches = null;
+		
+		$returnValue = preg_match('/^[a-z0-9-]{3,40}/', $end , $matches);
+		
+		if($matches) { return $end; }
+		
+		return false;
+		
+	}
+	
 	
 }

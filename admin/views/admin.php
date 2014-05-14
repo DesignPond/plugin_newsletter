@@ -19,15 +19,15 @@
 	
 	<?php
 	
-		$grab = new Grab();
-		
+/*
+		$grab = new Grab();		
 		$send = new Send();
 				
-		$url  = plugins_url('newsletter.php', __FILE__);
+		$url  = plugins_url('public/views/newsletter.php', dirname(dirname( __FILE__ )) );
 		
-		 $body_html = $grab->getPage($url);
+		//$body_html = $grab->getPage($url);
 		
-		echo $body_html;
+		//echo $body_html;
 		
 		// Params
 		$fromName  = 'Cindy Leschaud';
@@ -37,10 +37,24 @@
 		$subject   = 'Newsletter | Droit pour le Praticien';
 		$body_text = NULL;
 
-		//echo $send->sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName, $list);
-		
-		// echo admin_url( 'options-general.php?page=dd_newsletter');
-		
+		//$result    = $send->sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName, $list);
+*/	
 	?>
+				
+		<form method="post" action="options.php">
+		
+		    <?php settings_fields( 'dd-settings-group' ); ?>
+		    <?php do_settings_sections( 'dd-settings-group' ); ?>
+		    
+		    <table class="form-table">
+		        <tr valign="top">
+		        <th scope="row">Newsletter nom de la liste</th>
+		        <td><input type="text" name="dd_newsletter_list" value="<?php echo get_option('dd_newsletter_list'); ?>" /></td>
+		        </tr>
+		    </table>
+		
+		    <?php submit_button(); ?>
+		
+		</form>
 
 </div>

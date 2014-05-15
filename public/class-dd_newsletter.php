@@ -528,12 +528,13 @@ class DD_Newsletter {
 	
 	public function _send_test_nl(){
 	
+		// Get url to newsletter
+		$page = admin_url( 'options-general.php?page=dd_newsletter' ); // redirect url
+	
 		if( isset($_POST['email']) &&  !empty($_POST['email']))
 		{
 			if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
 			{
-				// Get url to newsletter
-				$page = admin_url( 'options-general.php?page=dd_newsletter' ); // redirect url
 				
 				// If we have arrêts we can send the newsletter
 				if( $this->newsletterCanBeSent() )

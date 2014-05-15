@@ -16,6 +16,28 @@
 <div class="wrap">
 
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+		
+	<?php
+	
+		if(isset($_GET['send-result']))
+	   	{	   		
+			switch ($_GET['send-result']) {
+			    case 0:
+			        echo '<div id="setting-error-settings_updated" class="updated"><p><strong>Le test a été envoyé</strong></p></div>';
+			        break;
+			    case 1:
+			        echo '<div id="setting-error-settings_updated" class="error"><p><strong>Le test ne peut pas être envoyé, il n\'a pas d\'arrêts pour cette semaine</strong></p></div>';
+			        break;
+			    case 2:
+			        echo '<div id="setting-error-settings_updated" class="error"><p><strong>L\'adresse email n\'est pas valide</strong></p></div>';
+			        break;
+			    case 3:
+			        echo '<div id="setting-error-settings_updated" class="error"><p><strong>Veuillez entrer une adresse email</strong></p></div>';
+			        break;				      
+			}  			
+	   	}
+   	
+	?>	
 	
 	<?php	
 
@@ -83,28 +105,6 @@
 		
 		<h3>Envoyer test</h3>
 		
-		<?php
-		
-			if(isset($_GET['send-result']))
-		   	{	   		
-				switch ($_GET['send-result']) {
-				    case 0:
-				        echo '<div id="message" class="updated">Le test a été envoyé</div>';
-				        break;
-				    case 1:
-				        echo '<div id="message" class="error">Le test ne peut pas être envoyé, il n\'a pas d\'arrêts pour cette semaine</div>';
-				        break;
-				    case 2:
-				        echo '<div id="message" class="error">L\'adresse email n\'est pas valide</div>';
-				        break;
-				    case 3:
-				        echo '<div id="message" class="error">Veuillez entrer une adresse email</div>';
-				        break;				      
-				}  			
-		   	}
-	   	
-		?>	
-		
 		<form method="post" action="admin-post.php">
 		    
 		    <table class="form-table">
@@ -161,6 +161,7 @@
 				
 				echo '</table>';			
 			}
+
 		
 		?>
 		

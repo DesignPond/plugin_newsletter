@@ -11,7 +11,7 @@
  
  define( 'PLUGIN_DIR', dirname(dirname(__FILE__)).'/' );  
  
- require_once(PLUGIN_DIR . 'admin/classes/Send.php');
+ require_once(PLUGIN_DIR . 'admin/classes/DD_Send.php');
 
 
 /**
@@ -99,15 +99,15 @@ class DD_Newsletter {
 		// Cron job		
 		add_action( 'my_daily_event', array( $this, 'send_newsletter' ) );
 		
-		$this->send       = new Send();
+		$this->send       = new DD_Send();
 		
-		$this->grab       = new Grab();
+		$this->grab       = new DD_Grab();
 		
-		$this->database   = new Database();
+		$this->database   = new DD_Database();
 		
-		$this->newsletter = new Newsletter();	
+		$this->newsletter = new DD_Sendnewsletter();	
 		
-		$this->log        = new Log;
+		$this->log        = new DD_Log();
 	}
 
 	/**
@@ -258,37 +258,55 @@ class DD_Newsletter {
 		// Test if newsletter has already been sent
 		$today = date('Y-m-d');
 		
-		$last  = $this->newsletter->lastNewsletterSend();
+		$last  = $this->newsletter->lastNewsletterSend(); // if no last we return today's date
 		
 		if($today > $last)
-		{
-			// weeke day range for query last week's arrets
-			$dates  = $this->database->getWeekDays();
-			
-			// Get arrets
-			$arrets = $this->database->getArretsAndCategoriesForDates($dates);
-			
-			if(!empty($arrets))
+		{			
+			if( $this->newsletterCanBeSent() )
 			{			
 				if($this->sending())
 				{
 					wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Newsletter envoyé!');
+					
+					$this->log->write('Newsletter envoyé! : '.$today);
 				}
 				else
 				{
 					wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Problème avec la newsletter');
+					
+					$this->log->write('Problème avec l\'envoi de la newsletter : '.$today);
 				}
 			}
 			else
 			{
 				wp_mail('cindy.leschaud@gmail.com', 'Newsletter', 'Pas d\'arrets pour la publication à envoyer dans la newsletter');
+				
+				$this->log->write('Pas d\'arrets pour la publication à envoyer dans la newsletter: '.$today);
 			}				
 		}
 		
-		// LOGGING
 		$this->log->write('Déjà envoyé aujourd\'hui : '.$today);
-		// END LOGGIN
 		
+	}
+	
+	/*
+	 * Test if the newsletter can be sent, there is arrets
+	 *
+	*/
+	public function newsletterCanBeSent(){
+	
+		// weeke day range for query last week's arrets
+		$dates  = $this->database->getWeekDays();
+		
+		// Get arrets
+		$arrets = $this->database->getArretsAndCategoriesForDates($dates);
+		
+		if(!empty($arrets))
+		{
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public function sending() {
@@ -512,8 +530,45 @@ class DD_Newsletter {
 	
 		if( isset($_POST['email']) &&  !empty($_POST['email']))
 		{
-			echo 'ok';
+			if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+			{
+				// Get url to newsletter
+				$page = admin_url( 'options-general.php?page=dd_newsletter' ); // redirect url
+				
+				// If we have arrêts we can send the newsletter
+				if( $this->newsletterCanBeSent() )
+				{	
+					// Get url to newsletter
+					$url  = plugins_url('views/newsletter.php', __FILE__ );	
+					
+					// Get newsletter html from newsletter.php 
+					$body_html = $this->grab->getPage($url);
+				
+					add_filter( 'wp_mail_content_type', create_function('', 'return "text/html"; '));
+					
+					wp_mail($_POST['email'], 'Test Newsletter Droit pour le Praticien', $body_html);
+					
+					$redirect = add_query_arg( array('send-result' => 0) , $page );
+					
+	        	}
+	        	else
+	        	{
+		        	$redirect = add_query_arg( array('send-result' => 1) , $page ); 
+	        	}
+		    }
+		    else
+		    {
+				$redirect = add_query_arg( array('send-result' => 2) , $page );    
+		    }			
 		}
+		else
+		{
+			$redirect = add_query_arg( array('send-result' => 3) , $page );   
+		}
+		
+		// redirect with result
+		wp_redirect( $redirect ); 			    
+		exit;
 	}
 
 

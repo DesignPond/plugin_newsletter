@@ -19,19 +19,35 @@
 	
 	<?php	
 
-		$grab       = new Grab();		
-		$send       = new Send();
-		$newsletter = new Newsletter();	
-		$xmlparser  = new Xmlparser();				
+		$grab       = new DD_Grab();		
+		$send       = new DD_Send();
+		$newsletter = new DD_Sendnewsletter();	
+		$xmlparser  = new DD_Xmlparser();				
 
-/*
 		$url  = plugins_url('public/views/newsletter.php', dirname(dirname( __FILE__ )) );
 		
-		$body_html = $grab->getPage($url);
+		//$body_html = $grab->getPage($url);
 		
 		//echo $body_html;
 		
+/*
+		// database functions
+		$database = new DD_Database();	
+		
+		// weeke day range for query last week's arrets
+		$dates  = $database->getWeekDays();
+		
+		// Get arrets
+		$arrets = $database->getArretsAndCategoriesForDates($dates);
+		
+		echo '<pre>';
+		print_r($arrets);
+		echo '</pre>';
+*/
+
+		
 		// Params
+/*
 		$fromName  = 'Cindy Leschaud';
 		$from      = 'cindy.leschaud@gmail.com';
 		$to        = 'cindy.leschaud@gmail.com';
@@ -43,6 +59,7 @@
 	
 		print_r($result);
 */
+
 		
 	?>
 		
@@ -64,7 +81,29 @@
 		
 		</form>
 		
-		<h3>Envoyer test</h3>	
+		<h3>Envoyer test</h3>
+		
+		<?php
+		
+			if(isset($_GET['send-result']))
+		   	{	   		
+				switch ($_GET['send-result']) {
+				    case 0:
+				        echo '<div id="message" class="updated">Le test a été envoyé</div>';
+				        break;
+				    case 1:
+				        echo '<div id="message" class="error">Le test ne peut pas être envoyé, il n\'a pas d\'arrêts pour cette semaine</div>';
+				        break;
+				    case 2:
+				        echo '<div id="message" class="error">L\'adresse email n\'est pas valide</div>';
+				        break;
+				    case 3:
+				        echo '<div id="message" class="error">Veuillez entrer une adresse email</div>';
+				        break;				      
+				}  			
+		   	}
+	   	
+		?>	
 		
 		<form method="post" action="admin-post.php">
 		    
@@ -122,10 +161,7 @@
 				
 				echo '</table>';			
 			}
-			
-			
-			
+		
 		?>
 		
-
 </div>

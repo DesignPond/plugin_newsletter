@@ -3,7 +3,7 @@
 	// require wordpress bootstrap
 	require_once( $_SERVER["DOCUMENT_ROOT"].'/wp-load.php' );
 	// database functions
-	$newsletter = new Newsletter();	
+	$newsletter = new DD_Sendnewsletter();	
 	
 	if(isset($_GET['id']))
 	{	

@@ -1,6 +1,6 @@
 <?php
 
-class Send {
+class DD_Send {
 
 	private $username; 
 	

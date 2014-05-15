@@ -1,6 +1,6 @@
 <?php
 
-class Log{
+class DD_Log{
 
 	protected $file;
 	

@@ -1,6 +1,6 @@
 <?php 
 
-class Xmlparser {
+class DD_Xmlparser {
 	
 
 	function __construct() {

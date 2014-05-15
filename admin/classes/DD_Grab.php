@@ -1,6 +1,6 @@
 <?php 
 
-class Grab {
+class DD_Grab {
 	
 	protected $user_agent;
 

@@ -8,3 +8,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Plugin de newsletter pour droit pour le praticien
 
+
+Shortcode
+
+[unsuscribe_newsletter]
+
+options: newsletter="suscribe" or newsletter="unsuscribe"

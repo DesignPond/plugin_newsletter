@@ -1,6 +1,7 @@
 <?php 
 
-class Newsletter {
+
+class DD_Sendnewsletter {
 
 	protected $send;
 	
@@ -8,9 +9,9 @@ class Newsletter {
 
 	function __construct() {
 	
-		$this->send      = new Send();
+		$this->send      = new DD_Send();
 		
-		$this->xmlparser = new Xmlparser();		
+		$this->xmlparser = new DD_Xmlparser();		
 	}	
 
 	public function listArchives(){
@@ -29,6 +30,7 @@ class Newsletter {
 			foreach($archives as $archive)
 			{
 				$xml   = $this->send->getStatForNewsletter($archive->newsletter_id);
+				
 				$stats = $this->xmlparser->parser($xml);
 				
 				$newsletter[$archive->newsletter_id]['send']  = $archive->send;
@@ -60,11 +62,18 @@ class Newsletter {
 	
 		global $wpdb;
 		
+		$today = date('Y-m-d');
+		
 		$table_name = $wpdb->prefix . 'dd_newsletter';
 		
 		$send = $wpdb->get_row(' SELECT send FROM '.$table_name.' ORDER BY send DESC LIMIT 0,1');
 		
-		return $send->send;
+		if(!empty($send))
+		{
+			return $send->send;
+		}
+		
+		return $today;		
 
 	}
 	

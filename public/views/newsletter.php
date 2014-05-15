@@ -8,7 +8,7 @@
 	$home  = home_url();
 	
 	// database functions
-	$database = new Database();	
+	$database = new DD_Database();	
 	
 	// weeke day range for query last week's arrets
 	$dates  = $database->getWeekDays();

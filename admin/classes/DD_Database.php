@@ -1,6 +1,7 @@
 <?php
 
-class Database{
+
+class DD_Database{
 
 	function __construct() {
 			
@@ -41,6 +42,7 @@ class Database{
 										  LEFT JOIN '.$this->subcategories_table.' on '.$this->subcategories_table.'.refNouveaute = '.$this->nouveautes_table.'.id_nouveaute 
 										  WHERE '.$this->nouveautes_table.'.publication_nouveaute = 1 
 										  AND   '.$this->nouveautes_table.'.datep_nouveaute '.$when.'');	
+										  
 
 		if(!empty($listArrets))
 		{

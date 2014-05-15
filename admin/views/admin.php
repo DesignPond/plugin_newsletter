@@ -105,6 +105,10 @@
 		
 		<h3>Envoyer test</h3>
 		
+		<?php $url = plugins_url('public/views/newsletter.php', dirname(dirname(__FILE__) ) );?>
+		
+		<a target="_blank" href="<?php echo $url; ?>">Voir la newsletter</a>
+		
 		<form method="post" action="admin-post.php">
 		    
 		    <table class="form-table">

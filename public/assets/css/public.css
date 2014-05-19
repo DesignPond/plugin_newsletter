@@ -5,6 +5,7 @@
 	padding:5px;
 	background:#bfffc2;
 	color:#105513;
+	margin-bottom: 10px;
 }
 
 .dd_error{
@@ -12,4 +13,5 @@
 	padding:5px;
 	background:#fbbdbd;
 	color:#551010;
+	margin-bottom: 10px;
 }

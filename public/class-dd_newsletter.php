@@ -425,6 +425,37 @@ class DD_Newsletter {
 	   	
 	   	$html     = '';
 	   	
+	   	/*
+			abo-result:
+			1: removed ok
+			2: removed failed
+			3: new/update subscriber ok
+			4: suscribe already on list
+			5: suscribe failed
+		*/
+		
+		if(isset($_GET['abo-result']))
+	   	{	   		
+			switch ($_GET['abo-result']) {
+			    case 1:
+			        $html .= '<div class="dd_success"><strong>Vous avez bien été désinscrit de la newsletter!</strong></div>';
+			        break;
+			    case 2:
+			        $html .= '<div class="dd_error"><strong>Problème avec la désinscription, cette adresse email n\'existe pas</strong></div>';
+			        break;
+			    case 3:
+			        $html .= '<div class="dd_success"><strong>Vous avez bien été inscrit à la newsletter!</strong></div>';
+			        break;
+			    case 4:
+			        $html .= '<div class="dd_error"><strong>Cette adresse email existe déjà!</strong></div>';
+			        break;	
+			    case 5:
+			        $html .= '<div class="dd_error"><strong>Cette adresse email n\'est pas valide!</strong></div>';
+			        break;				    			      
+			}  			
+	   	}
+/*
+	   	
 	   	if(isset($_GET['unsuscribe']))
 	   	{
 	   		if($_GET['unsuscribe'] == 'ok')
@@ -454,6 +485,7 @@ class DD_Newsletter {
 	   	{
 		   	$html .= '<p class="dd_error">Cette adresse email n\'est pas valide.</p>';	   		   			
 	   	}
+*/
 	   		   		   	
 	   	$html .= '<div id="'.$args['newsletter'].'">';
 	   	
@@ -484,32 +516,50 @@ class DD_Newsletter {
 	}
     	
 	public function _unsuscribe_nl(){
+	
+		/*
+			abo-result:
+			1: removed ok
+			2: removed failed
+			3: new/update subscriber ok
+			4: suscribe already on list
+			5: suscribe failed
+		*/
 		
 		if( isset($_POST['email']) &&  !empty($_POST['email']))
 		{
 			// test what we have to do!!! suscribe or unsuscribe
 			$attemp = $this->send->addOrDeleteUserFromList($_POST['email'], 'test' , $_POST['newsletter']);
+			
+/*
+			print_r($attemp);
+			exit();
+*/
 						
 			if ( $_POST['newsletter'] == 'unsuscribe' ) 
 			{
 				if(strpos($attemp,'removed') !== false)
 				{
-					$where = array('unsuscribe' => 'ok');
+					$where = array('unsuscribe' => 'ok', 'abo-result' => 1);
 				}
 				else
 				{
-					$where = array('unsuscribe' => 'no');		    
+					$where = array('unsuscribe' => 'no', 'abo-result' => 2);		    
 				}
 			}	
 			else if ( $_POST['newsletter'] == 'suscribe' ) 
 			{
-				if( strpos($attemp,'created') !== false || strpos($attemp,'updated') !== false )
+				if( strpos($attemp,'created') !== false || strpos($attemp,'updated') !== false)
 				{
-					$where = array('suscribe' => 'ok');
+					$where = array('suscribe' => 'ok', 'abo-result' => 3);
+				}
+				else if( strpos($attemp,'already') !== false  )
+				{
+					$where = array('suscribe' => 'no', 'abo-result' => 4);
 				}
 				else
 				{
-					$where = array('suscribe' => 'no');		    
+					$where = array('suscribe' => 'no', 'abo-result' => 5);		    
 				}				
 			}
 						

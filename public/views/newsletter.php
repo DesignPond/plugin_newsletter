@@ -192,9 +192,9 @@
                 
                 
                 <!-- --------   main content--------- -->
-                <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="container" bgcolor="a6bfcf">
+                <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="container" bgcolor="bccfdb">
               	<!-- ------- Header  -------- -->
-                	<tr bgcolor="a6bfcf"><td height="40"></td></tr>
+                	<tr bgcolor="bccfdb"><td height="20"></td></tr>
                 	
                 	<tr>
 	                	<td>
@@ -213,31 +213,50 @@
 				                				<td height="10" width="20"></td>
 				                			</tr>
 				                		</table>
-				                		<table border="0" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="nav">
-				                			<tr><td height="10"></td></tr>
-				                			<tr>
-				                				<td align="center" mc:edit="navigation" style="font-size: 13px; font-family: Helvetica, Arial, sans-serif;">
-				                					
-				                						<a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>"><strong>Home</strong></a>
-					                                    <span style="text" class="navSpac">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					                                    <a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>/?page_id=17"><strong>Contact</strong></a>
-				                					
+				                		
+						                <table border="0" width="95" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+		
+				                			<tr><td align="center" height="65" width="95">
+					                			<td>
+					                				<a href="http://www.unine.ch" target="_blank" style="width: 120px; display: block; border-style: none !important; border: 0 !important;">
+					                					<img style="display: block;"  width="95" height="65" src="<?php echo $url; ?>img/unine.png" alt="unine" />
+					                				</a>
 				                				</td>
 				                			</tr>
-				                		</table>
+			                			
+										</table>  
+				                		
 	                				</td>
 	                			</tr>
 	                		</table>
 	                	</td>
                 	</tr>
                 	
-                	<tr bgcolor="a6bfcf"><td height="40"></td></tr>
+                	<tr>
+                		<td>
+		                	
+		                	<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container-middle">
+	                			
+	                			<tr>
+	                				<td align="left" mc:edit="navigation" style="font-size: 13px; font-family: Helvetica, Arial, sans-serif;">
+	                					
+	                						<a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>"><strong>Home</strong></a>
+		                                    <span style="text" class="navSpac">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		                                    <a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>/?page_id=17"><strong>Contact</strong></a>
+	                					
+	                				</td>
+	                			</tr>
+	                			<tr><td height="10"></td></tr>
+	                		</table>		                	
+		                	              	
+	                	</td>
+                	</tr>
                 	<!-- -------- end header ------- -->
 					
 					
 					<!-- ------- main section ------- -->                	
                 	<tr mc:repeatable>
-                		<td bgcolor="a6bfcf">
+                		<td bgcolor="bccfdb">
                 			<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="container-middle">
 	                				
 	                			<tr bgcolor="ffffff"><td height="14"></td></tr>

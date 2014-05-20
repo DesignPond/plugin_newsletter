@@ -454,38 +454,6 @@ class DD_Newsletter {
 			        break;				    			      
 			}  			
 	   	}
-/*
-	   	
-	   	if(isset($_GET['unsuscribe']))
-	   	{
-	   		if($_GET['unsuscribe'] == 'ok')
-	   		{
-		   		$html .= '<p class="dd_success">Vous avez bien été désinscrit de la newsletter!</p>';	
-	   		}
-	   		else
-	   		{
-		   		$html .= '<p class="dd_error">Problème avec la désinscription, cette adresse email n\'existe pas</p>';
-	   		}
-	   			   			
-	   	}
-	   	
-	   	if(isset($_GET['suscribe']))
-	   	{
-	   		if($_GET['suscribe'] == 'ok')
-	   		{
-		   		$html .= '<p class="dd_success">Vous avez bien été inscrit à la newsletter!</p>';	
-	   		}
-	   		else
-	   		{
-		   		$html .= '<p class="dd_error">Cette adresse email existe déjà / n\'est pas valide</p>';
-	   		}	   			
-	   	}
-
-	   	if(isset($_GET['ohoh']))
-	   	{
-		   	$html .= '<p class="dd_error">Cette adresse email n\'est pas valide.</p>';	   		   			
-	   	}
-*/
 	   		   		   	
 	   	$html .= '<div id="'.$args['newsletter'].'">';
 	   	
@@ -622,31 +590,5 @@ class DD_Newsletter {
 		exit;
 	}
 
-
-	/**
-	 * NOTE:  Actions are points in the execution of a page or process
-	 *        lifecycle that WordPress fires.
-	 *
-	 *        Actions:    http://codex.wordpress.org/Plugin_API#Actions
-	 *        Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
-	 *
-	 * @since    1.0.0
-	 */
-	public function action_method_name() {
-	
-	}
-
-	/**
-	 * NOTE:  Filters are points of execution in which WordPress modifies data
-	 *        before saving it or sending it to the browser.
-	 *
-	 *        Filters: http://codex.wordpress.org/Plugin_API#Filters
-	 *        Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-	 *
-	 * @since    1.0.0
-	 */
-	public function filter_method_name() {
-		// @TODO: Define your filter hook callback here
-	}
 
 }

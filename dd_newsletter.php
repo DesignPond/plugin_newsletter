@@ -34,11 +34,12 @@ if ( ! defined( 'WPINC' ) ) {
 /*----------------------------------------------------------------------------*
  * Public-Facing Functionality
  *----------------------------------------------------------------------------*/
+ 
+ // bootstrap classes
+require_once( plugin_dir_path( __FILE__ ) . 'bootstrap.php' );
 
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-dd_newsletter.php' );
 
-// bootstrap classes
-require_once( plugin_dir_path( __FILE__ ) . 'bootstrap.php' );
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.

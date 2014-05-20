@@ -201,7 +201,7 @@ class DD_Newsletter_Admin {
 		 * - Change 'manage_options' to the capability you see fit
 		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
 		 */
-		$this->plugin_screen_hook_suffix = add_options_page(
+		$this->plugin_screen_hook_suffix = add_menu_page(
 			__( 'Newsletter publications', $this->plugin_slug ),
 			__( 'Newsletter publications', $this->plugin_slug ),
 			'manage_options',

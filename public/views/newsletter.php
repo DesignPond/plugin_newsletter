@@ -386,7 +386,34 @@
                 </table>
                 
                 <!-- ---------- end main Content --------------- -->
-                                             
+
+                <!-- -------- Ads  ------- -->
+                
+                <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" align="center">
+                	<tr bgcolor="43637c"><td height="14"></td></tr>
+                	
+                	<tr bgcolor="43637c">
+                		<td align="center">   
+                		             			
+                			<table border="0" width="560" cellpadding="0" cellspacing="0" class="container" align="center">
+			                	<tr bgcolor="ffffff"><td height="14"></td></tr>
+			                	
+			                	<tr bgcolor="ffffff">
+			                		<td align="center" style="color: #43637c; font-size: 10px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">                			
+			                				pub             			
+			                		</td>
+			                	</tr>
+			                	
+			                	<tr bgcolor="ffffff"><td height="14"></td></tr>
+			                </table> 
+			                            			
+                		</td>
+                	</tr>
+                	
+                	<tr bgcolor="43637c"><td height="14"></td></tr>
+                </table>
+                <!-- -------  end ads ------- -->         
+                                                             
                 <!-- -------- footer  ------- -->
                 
                 <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" align="center">
@@ -400,6 +427,8 @@
                 	<tr bgcolor="43637c"><td height="14"></td></tr>
                 </table>
                 <!-- -------  end footer ------- -->
+       
+                
             </td>
         </tr>
         

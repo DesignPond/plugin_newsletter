@@ -78,6 +78,12 @@ class DD_Newsletter_Admin {
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 		
 		add_action( 'admin_init', array( $this, 'register_mysettings' ) );
+		
+		add_action( 'admin_init', array( $this, 'register_url_arret' ) );
+		
+		add_action( 'admin_init', array( $this, 'register_url' ) );
+		
+		add_action( 'admin_init', array( $this, 'register_unsuscribe' ) );
 
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
@@ -215,7 +221,22 @@ class DD_Newsletter_Admin {
 	    //register our settings
 	    register_setting( 'dd-settings-group', 'dd_newsletter_list' );
 	}
-
+	
+	public function register_url_arret() {
+	    //register our settings
+	    register_setting( 'dd-newsletter-url-arret', 'dd_newsletter_url_arret' );
+	}
+	
+	public function register_url() {
+	    //register our settings
+	    register_setting( 'dd-newsletter-url', 'dd_newsletter_url' );
+	}
+	
+	public function register_unsuscribe() {
+	    //register our settings
+	    register_setting( 'dd-newsletter-unsuscribe', 'dd_newsletter_unsuscribe' );
+	}
+		
 	/**
 	 * Render the settings page for this plugin.
 	 *

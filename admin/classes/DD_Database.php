@@ -3,14 +3,31 @@
 
 class DD_Database{
 
-	function __construct() {
+	protected $nouveautes_table;
+	
+	protected $categories_table;
+		
+	protected $subcategories_table;
+
+	protected $urlArret;
+
+	function __construct( $test = null ) {
 			
 		// Set tables		
-		$this->nouveautes_table    = 'wp_nouveautes';
+		$this->nouveautes_table    = ( $test ? 'wp_nouveautes_test' : 'wp_nouveautes' );
 
-		$this->categories_table    = 'wp_custom_categories';
+		$this->categories_table    = ( $test ? 'wp_custom_categories_test' : 'wp_custom_categories' );
 
-		$this->subcategories_table = 'wp_subcategories';
+		$this->subcategories_table = ( $test ? 'wp_subcategories_test' : 'wp_subcategories' );
+		
+		$root = 'http://relevancy.bger.ch';
+		
+		$url  = 'http://relevancy.bger.ch/php/aza/http/index.php?lang=fr&zoom=&type=show_document&highlight_docid=aza%3A%2F%2F';
+		
+		$this->urlArret = ( get_option('dd_newsletter_url_arret') ? get_option('dd_newsletter_url_arret') : $url ); 
+		
+		$this->urlRoot  = ( get_option('dd_newsletter_url') ? get_option('dd_newsletter_url') : $root ); 
+		
 	}
 	
 	/*
@@ -131,6 +148,18 @@ class DD_Database{
 		
 		return $date;	
 	
+	}
+	
+	public function formatArretUrl($arret){
+				
+		$date      = new DateTime($arret['dated_nouveaute']);
+		$dated     = $date->format('d-m-Y');
+		$numero    = str_replace("/","-",$arret['numero_nouveaute']);
+		
+		$urlArret  = $this->urlArret;				
+		$urlArret .= $dated.'-'.$numero;
+		
+		return $urlArret;		
 	}
 	
 	

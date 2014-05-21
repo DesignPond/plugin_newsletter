@@ -85,6 +85,58 @@
 		
 	?>
 		
+		<h3>Url principale du TF</h3>	
+		
+		<form method="post" action="options.php">
+		
+		    <?php settings_fields( 'dd-newsletter-url' ); ?>
+		    <?php do_settings_sections( 'dd-newsletter-url' ); ?>
+		    
+		    <table class="form-table">
+		        <tr valign="top">
+		        <th scope="row">Url</th>
+		        <td class="dd_width_big"><input type="text" name="dd_newsletter_url" value="<?php echo get_option('dd_newsletter_url'); ?>" /></td>
+		        <td><input type="submit" value="Enregistrer" class="button button-primary" id="submit" name="submit"></td>
+		        </tr>
+		    </table>
+		
+		</form>
+				
+		<h3>Url des arrêt</h3>	
+		
+		<form method="post" action="options.php">
+		
+		    <?php settings_fields( 'dd-newsletter-url-arret' ); ?>
+		    <?php do_settings_sections( 'dd-newsletter-url-arret' ); ?>
+		    
+		    <table class="form-table">
+		        <tr valign="top">
+		        <th scope="row">Url</th>
+		        <td class="dd_width_big"><input type="text" name="dd_newsletter_url_arret" value="<?php echo get_option('dd_newsletter_url_arret'); ?>" /></td>
+		        <td><input type="submit" value="Enregistrer" class="button button-primary" id="submit" name="submit"></td>
+		        </tr>
+		    </table>
+		
+		</form>
+				
+		<h3>Desinscription</h3>	
+		
+		<form method="post" action="options.php">
+		
+		    <?php settings_fields( 'dd-newsletter-unsuscribe' ); ?>
+		    <?php do_settings_sections( 'dd-newsletter-unsuscribe' ); ?>
+		    
+		    <table class="form-table">
+		        <tr valign="top">
+		        <th scope="row">Lien vers le formulaire</th>
+		        <td class="dd_width_big"><input type="text" name="dd_newsletter_unsuscribe" value="<?php echo get_option('dd_newsletter_unsuscribe'); ?>" /></td>
+		        <td><input type="submit" value="Enregistrer" class="button button-primary" id="submit" name="submit"></td>
+		        </tr>
+		    </table>
+		
+		</form>
+				
+				
 		<h3>Liste</h3>	
 		
 		<form method="post" action="options.php">
@@ -95,14 +147,12 @@
 		    <table class="form-table">
 		        <tr valign="top">
 		        <th scope="row">Newsletter nom de la liste</th>
-		        <td><input type="text" name="dd_newsletter_list" value="<?php echo get_option('dd_newsletter_list'); ?>" /></td>
+		        <td class="dd_width_small"><input type="text" name="dd_newsletter_list" value="<?php echo get_option('dd_newsletter_list'); ?>" /></td>
+		        <td><input type="submit" value="Enregistrer" class="button button-primary" id="submit" name="submit"></td>
 		        </tr>
 		    </table>
-		
-		    <?php submit_button(); ?>
-		
 		</form>
-		
+				
 		<h3>Envoyer test</h3>
 		
 		<?php $url = plugins_url('public/views/newsletter.php', dirname(dirname(__FILE__) ) );?>
@@ -114,7 +164,7 @@
 		    <table class="form-table">
 		        <tr valign="top">
 		        <th scope="row">Email</th>
-		        <td width="200px">
+		        <td class="dd_width_small">
 		        	<input type="hidden" name="action" value="send-test" />
 		        	<input type="text" name="email" />
 		        </td>

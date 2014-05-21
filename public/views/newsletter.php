@@ -7,8 +7,11 @@
 	$url   = plugins_url().'/dd_newsletter/assets/';	
 	$home  = home_url();
 	
+	// Unsuscribe link
+	$unsuscribe = ( get_option('dd_newsletter_unsuscribe') ? get_option('dd_newsletter_unsuscribe') : $home); 
+	
 	// database functions
-	$database = new DD_Database();	
+	$database = new DD_Database(true);	
 	
 	// weeke day range for query last week's arrets
 	$dates  = $database->getWeekDays();
@@ -65,6 +68,7 @@
             /*------ sections ---------*/
             body[yahoo] .section-item{width: 400px !important;}
             body[yahoo] .section-img{width: 400px !important; height: auto !important;}
+            body[yahoo] .section-img2{width:240px !important; height: auto !important;}
             /*------- prefooter ------*/
             body[yahoo] .prefooter-header{padding: 0 10px !important; line-height: 24px !important;}
             body[yahoo] .prefooter-subheader{padding: 0 10px !important; line-height: 24px !important;}
@@ -95,6 +99,7 @@
             /*------ sections ---------*/
             body[yahoo] .section-item{width: 240px !important;}
             body[yahoo] .section-img{width: 240px !important; height: auto !important;}
+			body[yahoo] .section-img2{width: 240px !important; height: auto !important;}
             /*------- prefooter ------*/
             body[yahoo] .prefooter-header{padding: 0 10px !important;line-height: 28px !important;}
             body[yahoo] .prefooter-subheader{padding: 0 10px !important; line-height: 28px !important;}
@@ -238,11 +243,9 @@
 		                	<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container-middle">
 	                			
 	                			<tr>
-	                				<td align="left" mc:edit="navigation" style="font-size: 13px; font-family: Helvetica, Arial, sans-serif;">
+	                				<td align="left" mc:edit="navigation" style="font-size: 14px; font-family: Helvetica, Arial, sans-serif;">
 	                					
-	                						<a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>"><strong>Home</strong></a>
-		                                    <span style="text" class="navSpac">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                    <a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>/?page_id=17"><strong>Contact</strong></a>
+	                						<a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>"><strong>Accueil</strong></a>
 	                					
 	                				</td>
 	                			</tr>
@@ -262,7 +265,8 @@
 	                			<tr bgcolor="ffffff"><td height="14"></td></tr>
 	                			
 	                			<tr bgcolor="ffffff"><td align="center">
-	                				<img style="display: block;" mc:edit="main-img" class="main-image" width="538" height="180" src="<?php echo $url; ?>img/main-img.png" alt="derniers publications du TF" />
+	                				<a href="<?php echo $home; ?>">
+	                					<img style="display: block;" mc:edit="main-img" class="main-image" width="538" height="180" src="<?php echo $url; ?>img/main-img.png" alt="derniers publications du TF" /></a>
 	                			</td></tr>
 	                			
 	                			<tr bgcolor="ffffff"><td height="20"></td></tr>
@@ -291,14 +295,9 @@
                 	
                 	<tr mc:repeatable="campaigner" mc:variant="vertical space"><td height="35"></td></tr>
 
-<?php 
-
-	foreach($arrets as $arret)
-	{
-
-?>
+<?php  foreach($arrets as $arret){ ?>
                 	<!-- ------- section 1 ------- -->
-                	<tr mc:repeatable>
+                	<tr>
                 		<td>
                 			<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="container-middle">
 
@@ -311,8 +310,12 @@
                 									<table border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="section-item">
                 										<tr><td height="6"></td></tr>
                 										<tr>
-                											<td><a href="" style="width: 130px; display: block; border-style: none !important; border: 0 !important;">
-                											<img editable="true" mc:edit="image1" width="130" height="101" border="0" style="display: block;" src="<?php echo $url; ?>img/image1.png" alt="image1" class="section-img" /></a></td>
+                											<td>
+                												<?php $url_arret = $database->formatArretUrl($arret); ?>
+                												<a target="_blank" href="<?php echo $url_arret; ?>" style="width: 130px; display: block; border-style: none !important; border: 0 !important;">
+																	<img editable="true" mc:edit="image1" width="130" height="101" border="0" style="display: block;" src="<?php echo $url; ?>img/image1.png" alt="image1" class="section-img" />
+																	</a>
+															</td>
                 										</tr>
                 										<tr><td height="10"></td></tr>
                 									</table>
@@ -323,9 +326,8 @@
                 									
                 									<table border="0" width="360" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="section-item">
                 										<tr>
-                											<td mc:edit="title2" style="color: #0f4060; font-size: 16px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-	                											
-	                											<a target="_blank" href="<?php echo $home; ?>/?page_id=1143&arret=<?php echo $arret['numero_nouveaute']; ?>"  href="" style="color: #0f4060; font-size: 16px;text-decoration: none !important; font-weight: bold; font-family: Helvetica, Arial, sans-serif;" href="#">
+                											<td mc:edit="title2" style="color: #0f4060; font-size: 16px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">             											           											
+	                											<a target="_blank" href="<?php echo $url_arret; ?>" style="color: #0f4060; font-size: 16px;text-decoration: none !important; font-weight: bold; font-family: Helvetica, Arial, sans-serif;">       										
 	                												<?php echo $arret['numero_nouveaute']; ?>
 	                											</a>
 	                											
@@ -344,8 +346,8 @@
                 										<tr><td height="15"></td></tr>
                 										<tr>
                 											<td>
-                												<a target="_blank" href="<?php echo $home; ?>/?page_id=1143&arret=<?php echo $arret['numero_nouveaute']; ?>" style="display: block; width: 80px; border-style: none !important;text-decoration: none !important; border: 0 !important;">
-                												<img editable="true" mc:edit="readMoreBtn" width="79" height="20" border="0" style="display: block;" src="<?php echo $url; ?>img/readmore-btn.png" alt="" /></a>
+                												<a target="_blank" href="<?php echo $home; ?>/?page_id=1143&arret=<?php echo $arret['numero_nouveaute']; ?>" style="display: block; width: 130px; border-style: none !important;text-decoration: none !important; border: 0 !important;">
+                												<img editable="true" mc:edit="readMoreBtn" width="130" height="24" border="0" style="display: block;" src="<?php echo $url; ?>img/readmore-btn.png" alt="" /></a>
                 											</td>
                 										</tr>
                 									</table>
@@ -368,20 +370,7 @@
                 	<tr><td height="35"></td></tr>
                 	
 <?php } ?>
-                	
-                	<tr>
-                		<td align="center" mc:edit="copy1" style="color: #fff; font-size: 13px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" class="prefooter-header">	                			                	Vous recevez cette newsletter car vous êtes inscrits sur le site 
-                			<a style="text-decoration: none !important; color: #43637c;" href="<?php echo $home; ?>">www.droitpraticien.ch</a>
-                		</td>
-                	</tr>
-                	<tr><td height="7"></td></tr>	
-                	<tr>              		
-                		<td align="center" mc:edit="copy1" style="color: #fff; font-size: 13px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" class="prefooter-header">
-	                			Pour vous désinscrire de cette newsletter <a style="text-decoration: none !important; color: #43637c;" href="<?php echo $home; ?>">cliquez ici</a>	                		
-                		</td>
-                	</tr>	
-                	
-                	<tr><td height="30"></td></tr>
+
 
                 </table>
                 
@@ -389,23 +378,79 @@
 
                 <!-- -------- Ads  ------- -->
                 
-                <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" align="center">
-                	<tr bgcolor="43637c"><td height="14"></td></tr>
+                <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" align="center">                	
+                	
+                	<tr bgcolor="43637c"><td height="15"></td></tr>
                 	
                 	<tr bgcolor="43637c">
                 		<td align="center">   
-                		             			
-                			<table border="0" width="560" cellpadding="0" cellspacing="0" class="container" align="center">
-			                	<tr bgcolor="ffffff"><td height="14"></td></tr>
-			                	
-			                	<tr bgcolor="ffffff">
-			                		<td align="center" style="color: #43637c; font-size: 10px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">                			
-			                				pub             			
+			                		                
+			                <table width="560" border="0" align="center" cellpadding="0" cellspacing="0" class="mainContent">
+			                	<tr bgcolor="0f4060">
+			                		<td align="center" height="32" style="font-size: 14px; font-family: Helvetica, Arial, sans-serif; color:#fff;font-weight:bold; border-style: none !important; border: 0 !important;">
+				                		Accès au site
 			                		</td>
 			                	</tr>
-			                	
-			                	<tr bgcolor="ffffff"><td height="14"></td></tr>
-			                </table> 
+    							<tr bgcolor="ddedf6"><td height="10"></td></tr>
+    							<tr bgcolor="ddedf6">
+    								<td>
+    									<table border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="section-item">
+    										<tr><td height="6"></td></tr>
+    										<tr>
+    											<td>
+    												<a target="_blank" href="http://publications-droit.ch" style="width: 140px; display: block; border-style: none !important; border: 0 !important;">
+														<img editable="true" mc:edit="image1" width="140px" height="181" border="0" style="display: block;" src="<?php echo $url; ?>img/ads.png" alt="image1" class="section-img2" />
+													</a>
+												</td>
+    										</tr>
+    										<tr><td height="10"></td></tr>
+    									</table>
+  
+    									
+    									<table border="0" width="400" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="section-item">
+    										<tr><td height="10"></td></tr>
+    										<tr>
+    											<td width="10px"></td>
+    											<td mc:edit="subtitle2" style="color: #0f4060; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
+    												L’achat de la dernière edition du livre <strong>Le droit pour le praticien</strong> vous donne l’accès au site.										
+    											</td>
+    											<td width="10px"></td>
+    										</tr>
+    										<tr><td height="10"></td></tr>
+											<tr>
+												<td width="10px"></td>
+    											<td mc:edit="subtitle2" style="color: #083451; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
+														Pour seulement 79 CHF par année vous pouvez:<br/>
+														
+														<ul style="margin-left:5px;padding-left:15px;">
+															<li>Consulter les résumés de jurisprudence classées par thèmes</li>
+															<li>Rechercher les contenus par mots clés</li>
+															<li>Créer des alertes emails</li>
+														</ul>
+    											</td>
+    											<td width="10px"></td>
+    											
+    										</tr>
+    										<tr>
+    											<td width="10px"></td>
+	    										<td style="color: #0f4060; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
+	    											<a style="color: #0f4060; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" href="http://publications-droit.ch" target="_blank">
+		    											 Obtenir le livre
+	    											</a>
+    											</td>
+    											<td width="10px"></td>
+    										</tr>
+    									</table>
+
+    									
+    								</td>
+    							</tr>
+    							
+    							<tr bgcolor="ddedf6"><td height="15"></td></tr>
+    							
+    						</table>
+
+			                
 			                            			
                 		</td>
                 	</tr>
@@ -417,13 +462,37 @@
                 <!-- -------- footer  ------- -->
                 
                 <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" align="center">
-                	<tr bgcolor="43637c"><td height="14"></td></tr>
+                	<tr bgcolor="43637c"><td height="7"></td></tr>
+                	                	
                 	<tr bgcolor="43637c">
-                		<td mc:edit="copy3" align="center" style="color: #fff; font-size: 10px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">                			
-                				Droit pour le Praticien © Copyright <?php echo date('Y'); ?>                			
+                		<td align="center" mc:edit="copy1" style="color: #d9e6ef; font-size: 13px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" class="prefooter-header">	                			                	Vous recevez cette newsletter car vous êtes inscrits sur le site <a style="color: #fff;" href="<?php echo $home; ?>">www.droitpraticien.ch</a>
+                		</td>
+                	</tr>
+                	<tr bgcolor="43637c"><td height="5"></td></tr>	
+                	<tr bgcolor="43637c">              		
+                		<td align="center" mc:edit="copy1" style="color: #d9e6ef; font-size: 13px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" class="prefooter-header">
+	                			Pour vous désinscrire de cette newsletter <a style="color: #fff;" href="<?php echo $unsuscribe; ?>">cliquez ici</a>	                		
+                		</td>
+                	</tr>	
+                	
+                	<tr bgcolor="43637c"><td height="20"></td></tr>
+                	
+                	<tr bgcolor="43637c">
+                		<td mc:edit="copy3" align="center" style="color: #fff; line-height:18px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;"> 
+                				<strong>Faculté de droit</strong><br/>
+								Avenue du 1er-Mars 26<br/>
+								2000 Neuchâtel    			            			
                 		</td>
                 	</tr>
                 	
+                	<tr bgcolor="43637c"><td height="10"></td></tr>
+                	
+                	<tr bgcolor="43637c">
+                		<td mc:edit="copy3" align="center" style="color: #fff; font-size: 10px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;"> 			
+                				Droit pour le Praticien © Copyright <?php echo date('Y'); ?>                			
+                		</td>
+                	</tr>
+                	                	
                 	<tr bgcolor="43637c"><td height="14"></td></tr>
                 </table>
                 <!-- -------  end footer ------- -->

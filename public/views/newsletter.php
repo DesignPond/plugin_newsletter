@@ -10,8 +10,9 @@
 	// Unsuscribe link
 	$unsuscribe = ( get_option('dd_newsletter_unsuscribe') ? get_option('dd_newsletter_unsuscribe') : $home); 
 	
+	$mode = get_option('dd_arrets_mode'); 
 	// database functions
-	$database = new DD_Database(true);	
+	$database = new DD_Database($mode);	
 	
 	// weeke day range for query last week's arrets
 	$dates  = $database->getWeekDays();

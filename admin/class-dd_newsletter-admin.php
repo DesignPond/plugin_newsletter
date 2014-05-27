@@ -79,10 +79,6 @@ class DD_Newsletter_Admin {
 		
 		add_action( 'admin_init', array( $this, 'register_mysettings' ) );
 		
-		add_action( 'admin_init', array( $this, 'register_url_arret' ) );
-		
-		add_action( 'admin_init', array( $this, 'register_url' ) );
-		
 		add_action( 'admin_init', array( $this, 'register_unsuscribe' ) );
 
 		// Add an action link pointing to the options page.
@@ -141,10 +137,6 @@ class DD_Newsletter_Admin {
 	/**
 	 * Register and enqueue admin-specific style sheet.
 	 *
-	 * @TODO:
-	 *
-	 * - Rename "DD_Newsletter" to the name your plugin
-	 *
 	 * @since     1.0.0
 	 *
 	 * @return    null    Return early if no settings page is registered.
@@ -164,10 +156,6 @@ class DD_Newsletter_Admin {
 
 	/**
 	 * Register and enqueue admin-specific JavaScript.
-	 *
-	 * @TODO:
-	 *
-	 * - Rename "DD_Newsletter" to the name your plugin
 	 *
 	 * @since     1.0.0
 	 *
@@ -193,20 +181,6 @@ class DD_Newsletter_Admin {
 	 */
 	public function add_plugin_admin_menu() {
 
-		/*
-		 * Add a settings page for this plugin to the Settings menu.
-		 *
-		 * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-		 *
-		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
-		 *
-		 * @TODO:
-		 *
-		 * - Change 'Page Title' to the title of your plugin admin page
-		 * - Change 'Menu Text' to the text for menu item for the plugin settings page
-		 * - Change 'manage_options' to the capability you see fit
-		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
-		 */
 		$this->plugin_screen_hook_suffix = add_menu_page(
 			__( 'Newsletter publications', $this->plugin_slug ),
 			__( 'Newsletter publications', $this->plugin_slug ),
@@ -218,22 +192,10 @@ class DD_Newsletter_Admin {
 	}
 	
 	public function register_mysettings() {
-	    //register our settings
 	    register_setting( 'dd-settings-group', 'dd_newsletter_list' );
 	}
 	
-	public function register_url_arret() {
-	    //register our settings
-	    register_setting( 'dd-newsletter-url-arret', 'dd_newsletter_url_arret' );
-	}
-	
-	public function register_url() {
-	    //register our settings
-	    register_setting( 'dd-newsletter-url', 'dd_newsletter_url' );
-	}
-	
 	public function register_unsuscribe() {
-	    //register our settings
 	    register_setting( 'dd-newsletter-unsuscribe', 'dd_newsletter_unsuscribe' );
 	}
 		

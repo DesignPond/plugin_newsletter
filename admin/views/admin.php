@@ -11,6 +11,10 @@
  * @link      http://example.com
  * @copyright 2014 Your Name or Company Name
  */
+ 
+ // Instance of class
+ $newsletter = new DD_Sendnewsletter();	
+ 
 ?>
 
 <div class="wrap">
@@ -37,88 +41,7 @@
 			}  			
 	   	}
    	
-	?>	
-	
-	<?php	
-
-		$grab       = new DD_Grab();		
-		$send       = new DD_Send();
-		$newsletter = new DD_Sendnewsletter();	
-		$xmlparser  = new DD_Xmlparser();				
-
-		$url  = plugins_url('public/views/newsletter.php', dirname(dirname( __FILE__ )) );
-		
-		//$body_html = $grab->getPage($url);
-		
-		//echo $body_html;
-		
-/*
-		// database functions
-		$database = new DD_Database();	
-		
-		// weeke day range for query last week's arrets
-		$dates  = $database->getWeekDays();
-		
-		// Get arrets
-		$arrets = $database->getArretsAndCategoriesForDates($dates);
-		
-		echo '<pre>';
-		print_r($arrets);
-		echo '</pre>';
-*/
-
-		
-		// Params
-/*
-		$fromName  = 'Cindy Leschaud';
-		$from      = 'cindy.leschaud@gmail.com';
-		$to        = 'cindy.leschaud@gmail.com';
-		$list      = 'myself';
-		$subject   = 'Newsletter | Droit pour le Praticien';
-		$body_text = NULL;
-
-		$result    = $send->sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName, $list);
-	
-		print_r($result);
-*/
-
-		
-	?>
-		
-		<h3>Url principale du TF</h3>	
-		
-		<form method="post" action="options.php">
-		
-		    <?php settings_fields( 'dd-newsletter-url' ); ?>
-		    <?php do_settings_sections( 'dd-newsletter-url' ); ?>
-		    
-		    <table class="form-table">
-		        <tr valign="top">
-		        <th scope="row">Url</th>
-		        <td class="dd_width_big"><input type="text" name="dd_newsletter_url" value="<?php echo get_option('dd_newsletter_url'); ?>" /></td>
-		        <td><input type="submit" value="Enregistrer" class="button button-primary" id="submit" name="submit"></td>
-		        </tr>
-		    </table>
-		
-		</form>
-				
-		<h3>Url des arrêt</h3>	
-		
-		<form method="post" action="options.php">
-		
-		    <?php settings_fields( 'dd-newsletter-url-arret' ); ?>
-		    <?php do_settings_sections( 'dd-newsletter-url-arret' ); ?>
-		    
-		    <table class="form-table">
-		        <tr valign="top">
-		        <th scope="row">Url</th>
-		        <td class="dd_width_big"><input type="text" name="dd_newsletter_url_arret" value="<?php echo get_option('dd_newsletter_url_arret'); ?>" /></td>
-		        <td><input type="submit" value="Enregistrer" class="button button-primary" id="submit" name="submit"></td>
-		        </tr>
-		    </table>
-		
-		</form>
-				
+	?>			
 		<h3>Desinscription</h3>	
 		
 		<form method="post" action="options.php">
@@ -215,7 +138,6 @@
 				
 				echo '</table>';			
 			}
-
 		
 		?>
 		

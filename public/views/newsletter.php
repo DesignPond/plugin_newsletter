@@ -23,6 +23,10 @@
 	// title dates of week
 	$ladate = $database->arrangeDate($dates);
 	
+	$page = get_ID_by_slug('a-propos');
+	$more = get_permalink($page);
+	
+	
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -399,7 +403,7 @@
     										<tr><td height="6"></td></tr>
     										<tr>
     											<td>
-    												<a target="_blank" href="http://publications-droit.ch" style="width: 140px; display: block; border-style: none !important; border: 0 !important;">
+    												<a target="_blank" href="<?php echo $more; ?>" style="width: 140px; display: block; border-style: none !important; border: 0 !important;">
 														<img editable="true" mc:edit="image1" width="140px" height="181" border="0" style="display: block;" src="<?php echo $url; ?>img/ads.png" alt="image1" class="section-img2" />
 													</a>
 												</td>
@@ -413,7 +417,7 @@
     										<tr>
     											<td width="10px"></td>
     											<td mc:edit="subtitle2" style="color: #0f4060; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-    												L’achat de la dernière edition du livre <strong>Le droit pour le praticien</strong> vous donne l’accès au site.										
+    												Grâce à l’achat de la dernière edition du livre <strong>Le droit pour le praticien</strong> pour seulement 79 CHF vous obtenez l'accès au site.										
     											</td>
     											<td width="10px"></td>
     										</tr>
@@ -421,7 +425,7 @@
 											<tr>
 												<td width="10px"></td>
     											<td mc:edit="subtitle2" style="color: #083451; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-														Pour seulement 79 CHF par année vous pouvez:<br/>
+														Durant une année vous pourrez alors:<br/>
 														
 														<ul style="margin-left:5px;padding-left:15px;">
 															<li>Consulter les résumés de jurisprudence classées par thèmes</li>
@@ -435,9 +439,31 @@
     										<tr>
     											<td width="10px"></td>
 	    										<td style="color: #0f4060; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-	    											<a style="color: #0f4060; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" href="http://publications-droit.ch" target="_blank">
-		    											 Obtenir le livre
-	    											</a>
+													
+													<table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+														<tr>
+														<td align="left">
+																<div><!--[if mso]>
+  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:24px;v-text-anchor:middle;width:120px;" arcsize="17%" strokecolor="#093450" fillcolor="#0f4060">
+    <w:anchorlock/>
+    <center style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:normal;">En savoir plus</center>
+  </v:roundrect>
+<![endif]--><a target="_blank" href="<?php echo $more; ?>"
+style="background-color:#0f4060;border:1px solid #093450;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:normal;line-height:24px;text-align:center;text-decoration:none;width:120px;-webkit-text-size-adjust:none;mso-hide:all;">En savoir plus</a></div>
+															</td>
+															<td align="left">
+															<div><!--[if mso]>
+  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:24px;v-text-anchor:middle;width:120px;" arcsize="17%" strokecolor="#732131" fillcolor="#912137">
+    <w:anchorlock/>
+    <center style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:normal;">Obtenir le livre</center>
+  </v:roundrect>
+<![endif]--><a target="_blank" href="http://publications-droit.ch"
+style="background-color:#912137;border:1px solid #732131;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:normal;line-height:24px;text-align:center;text-decoration:none;width:120px;-webkit-text-size-adjust:none;mso-hide:all;">Obtenir le livre</a></div>
+															</td>
+															
+														</tr>
+													</table>
+													
     											</td>
     											<td width="10px"></td>
     										</tr>

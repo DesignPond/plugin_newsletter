@@ -460,7 +460,7 @@ class DD_Newsletter {
 	   	// Test if we what to suscribe or to unsuscribe from the newsletter
 	   	if($args['newsletter'] == 'suscribe')
 	   	{
-	   		$html .= '<h3>S\'inscrire à la newsletter "Derniers arrêts proposés pour la publication"</h3>';
+	   		$html .= '<p><strong><span class="glyphicon glyphicon-envelope"></span>&nbsp; Derniers arrêts proposés pour la publication</strong></p>';
 	   		$html .= '<form action="'.$action.'" method="post">'; 
 			$html .= '<input type="hidden" name="newsletter" value="suscribe" />';
 			$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	

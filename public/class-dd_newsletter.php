@@ -456,7 +456,7 @@ class DD_Newsletter {
 	   	}
 	   		   		   	
 	   	$html .= '<div id="'.$args['newsletter'].'">';
-	   	$html .= '<h4><span class="glyphicon glyphicon-envelope"></span>&nbsp; Derniers arrêts proposés pour la publication</h4>';
+	   	$html .= '<h4>Derniers arrêts proposés pour la publication</h4>';
 	   	// Test if we what to suscribe or to unsuscribe from the newsletter
 	   	if($args['newsletter'] == 'suscribe')
 	   	{
@@ -477,7 +477,7 @@ class DD_Newsletter {
 		
 			$html .= '<div class="input-group">';
 				$html .= '<input type="text" name="email" class="form-control" placeholder="Votre email" />';
-				$html .= '<span class="input-group-btn"><button class="btn btn-blue" type="submit">Envoyer</button></span>';
+				$html .= '<span class="input-group-btn"><button class="btn btn-buy" type="submit">Envoyer</button></span>';
 			$html .= '</div>';
 		    
 		$html .= '</form>';	    

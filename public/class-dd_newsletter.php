@@ -456,26 +456,29 @@ class DD_Newsletter {
 	   	}
 	   		   		   	
 	   	$html .= '<div id="'.$args['newsletter'].'">';
-	   	
+	   	$html .= '<h4><span class="glyphicon glyphicon-envelope"></span>&nbsp; Derniers arrêts proposés pour la publication</h4>';
 	   	// Test if we what to suscribe or to unsuscribe from the newsletter
 	   	if($args['newsletter'] == 'suscribe')
 	   	{
-	   		$html .= '<p><strong><span class="glyphicon glyphicon-envelope"></span>&nbsp; Derniers arrêts proposés pour la publication</strong></p>';
+	   		$html .= '<p>S\'inscrire à la newsletter</p>';
 	   		$html .= '<form action="'.$action.'" method="post">'; 
 			$html .= '<input type="hidden" name="newsletter" value="suscribe" />';
 			$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
 	   	}
 	   	else
 	   	{
-	   		$html .= '<h3>Se désinscrire de la newsletter "Derniers arrêts proposés pour la publication"</h3>';
+	   		$html .= '<p>Se desinscrire de la newsletter</p>';
 	   		$html .= '<form action="'.$action.'" method="post">'; 
 			$html .= '<input type="hidden" name="newsletter" value="unsuscribe" />';
 			$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
 	   	}
 			
 		$html .= '<input type="hidden" name="action" value="submit-form" />';
-		$html .= '<input type="text" name="email" />';
-		$html .= '<input type="submit" value="envoyer" />';
+		
+			$html .= '<div class="input-group">';
+				$html .= '<input type="text" name="email" class="form-control" placeholder="Votre email" />';
+				$html .= '<span class="input-group-btn"><button class="btn btn-blue" type="submit">Envoyer</button></span>';
+			$html .= '</div>';
 		    
 		$html .= '</form>';	    
 	    $html .= '</div>';  

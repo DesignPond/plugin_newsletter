@@ -425,6 +425,8 @@ class DD_Newsletter {
 	   	
 	   	$html     = '';
 	   	
+	   	$unsuscribe = NULL;
+	   	
 	   	/*
 			abo-result:
 			1: removed ok
@@ -439,12 +441,14 @@ class DD_Newsletter {
 			switch ($_GET['abo-result']) {
 			    case 1:
 			        $html .= '<div class="dd_success"><strong>Vous avez bien été désinscrit de la newsletter!</strong></div>';
+			        $unsuscribe = true;
 			        break;
 			    case 2:
 			        $html .= '<div class="dd_error"><strong>Problème avec la désinscription, cette adresse email n\'existe pas</strong></div>';
 			        break;
 			    case 3:
 			        $html .= '<div class="dd_success"><strong>Vous avez bien été inscrit à la newsletter!</strong></div>';
+			        $unsuscribe = true;
 			        break;
 			    case 4:
 			        $html .= '<div class="dd_error"><strong>Cette adresse email existe déjà!</strong></div>';
@@ -454,34 +458,38 @@ class DD_Newsletter {
 			        break;				    			      
 			}  			
 	   	}
-	   		   		   	
-	   	$html .= '<div id="'.$args['newsletter'].'">';
-	   	$html .= '<h4>Derniers arrêts proposés pour la publication</h4>';
-	   	// Test if we what to suscribe or to unsuscribe from the newsletter
-	   	if($args['newsletter'] == 'suscribe')
-	   	{
-	   		$html .= '<p>S\'inscrire à la newsletter</p>';
-	   		$html .= '<form action="'.$action.'" method="post">'; 
-			$html .= '<input type="hidden" name="newsletter" value="suscribe" />';
-			$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
-	   	}
-	   	else
-	   	{
-	   		$html .= '<p>Se desinscrire de la newsletter</p>';
-	   		$html .= '<form action="'.$action.'" method="post">'; 
-			$html .= '<input type="hidden" name="newsletter" value="unsuscribe" />';
-			$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
-	   	}
+	   	
+	   	if(!$unsuscribe)
+	   	{   		   	
+		   	$html .= '<div id="'.$args['newsletter'].'">';
+		   	$html .= '<h4>Derniers arrêts proposés pour la publication</h4>';
+		   	// Test if we what to suscribe or to unsuscribe from the newsletter
+		   	if($args['newsletter'] == 'suscribe')
+		   	{
+		   		$html .= '<p>S\'inscrire à la newsletter</p>';
+		   		$html .= '<form action="'.$action.'" method="post">'; 
+				$html .= '<input type="hidden" name="newsletter" value="suscribe" />';
+				$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
+		   	}
+		   	else
+		   	{
+		   		$html .= '<p>Se desinscrire de la newsletter</p>';
+		   		$html .= '<form action="'.$action.'" method="post">'; 
+				$html .= '<input type="hidden" name="newsletter" value="unsuscribe" />';
+				$html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';		   	
+		   	}
+				
+			$html .= '<input type="hidden" name="action" value="submit-form" />';
 			
-		$html .= '<input type="hidden" name="action" value="submit-form" />';
-		
-			$html .= '<div class="input-group">';
-				$html .= '<input type="text" name="email" class="form-control" placeholder="Votre email" />';
-				$html .= '<span class="input-group-btn"><button class="btn btn-buy" type="submit">Envoyer</button></span>';
-			$html .= '</div>';
+				$html .= '<div class="input-group col-sm-8">';
+					$html .= '<input type="text" name="email" class="form-control" placeholder="Votre email" />';
+					$html .= '<span class="input-group-btn"><button class="btn btn-buy" type="submit">Envoyer</button></span>';
+				$html .= '</div>';
+			    
+			$html .= '</form>';	    
+		    $html .= '</div>'; 
 		    
-		$html .= '</form>';	    
-	    $html .= '</div>';  
+		} 
 	    
 	    return $html;
 	}
@@ -501,12 +509,7 @@ class DD_Newsletter {
 		{
 			// test what we have to do!!! suscribe or unsuscribe
 			$attemp = $this->send->addOrDeleteUserFromList($_POST['email'], 'test' , $_POST['newsletter']);
-			
-/*
-			print_r($attemp);
-			exit();
-*/
-						
+				
 			if ( $_POST['newsletter'] == 'unsuscribe' ) 
 			{
 				if(strpos($attemp,'removed') !== false)

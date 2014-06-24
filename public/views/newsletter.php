@@ -5,14 +5,11 @@
 	
 	// assets url for images and links
 	$url   = plugins_url().'/dd_newsletter/assets/';	
-<<<<<<< HEAD
-	
-	// For now...
+
 	$url   = 'http://www.droitpourlepraticien.ch/newsletter/';	
-=======
-	// for now..
-	$url        = 'http://www.droitpourlepraticien.ch/newsletter/';	
->>>>>>> 9166966bc1fe8f89a9dbf3e727c45c1112b5fd54
+
+	$url   = 'http://www.droitpourlepraticien.ch/newsletter/';	
+
 	$home  = home_url();
 	
 	// Unsuscribe link
@@ -202,15 +199,11 @@
 	                				<td>
 	                					<table border="0" width="400" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="logo">
 				                			<tr>
-<<<<<<< HEAD
-				                				<td align="center">
-				                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;"><img editable="true" mc:edit="logo" width="282" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" /></a>
-=======
 				                				<td align="left">
 				                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;">
 				                						<img editable="true" mc:edit="logo" width="270" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" />
 				                					</a>
->>>>>>> 9166966bc1fe8f89a9dbf3e727c45c1112b5fd54
+
 				                				</td>
 				                			</tr>
 				                		</table>	

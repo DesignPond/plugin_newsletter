@@ -97,7 +97,7 @@ class DD_Newsletter {
 		add_action( 'admin_post_send-test', array( $this, '_send_test_nl' ) );
 		
 		// Cron job		
-		add_action( 'my_daily_event', array( $this, 'send_newsletter' ) );
+		add_action( 'dd_weekly_newsletter', array( $this, 'send_newsletter' ) );
 		
 		$this->send       = new DD_Send();
 		

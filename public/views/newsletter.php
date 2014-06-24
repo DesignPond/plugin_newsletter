@@ -5,9 +5,14 @@
 	
 	// assets url for images and links
 	$url   = plugins_url().'/dd_newsletter/assets/';	
+<<<<<<< HEAD
 	
 	// For now...
 	$url   = 'http://www.droitpourlepraticien.ch/newsletter/';	
+=======
+	// for now..
+	$url        = 'http://www.droitpourlepraticien.ch/newsletter/';	
+>>>>>>> 9166966bc1fe8f89a9dbf3e727c45c1112b5fd54
 	$home  = home_url();
 	
 	// Unsuscribe link
@@ -123,14 +128,13 @@
 
 <body yahoo="fix" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
-	<table border="0" width="100%" cellpadding="0" cellspacing="0">	
+	<table border="0" width="100%"  align="center" cellpadding="0" cellspacing="0">	
 		<tr><td height="30"></td></tr>		
         <tr>       	
             <td width="100%" align="center" valign="top" bgcolor="#ffffff">
             	
                 <!-- -------   top header   ---------- -->
-                <table border="0" width="600" cellpadding="0" cellspacing="0" align="center" class="container">
-                                    
+                <table border="0" width="600" cellpadding="0" cellspacing="0" align="center" class="container">                                    
                     <tr bgcolor="43637c"><td height="14"></td></tr>                   
                     <tr bgcolor="43637c">
 	                    <td align="center">
@@ -142,50 +146,34 @@
 					                    		<td align="center">
 					                    			<table border="0" cellpadding="0" cellspacing="0" class="date">
 					                    				<tr>
-								                    		<td>
-									                    		<img editable="true" mc:edit="icon1" width="13" height="13" style="display: block;" src="<?php echo $url; ?>img/icon-cal.png" alt="icon 1" />
-								                    		</td>
+								                    		<td><img editable="true" mc:edit="icon1" width="13" height="13" style="display: block;" src="<?php echo $url; ?>img/icon-cal.png" alt="icon 1" /></td>
 								                    		<td>&nbsp;&nbsp;</td>
-								                    		<td mc:edit="date" style="color: #fefefe; font-size: 11px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-								                    			
-								                    			<?php 
-								                    			
-								                    				if( ! ini_get('date.timezone') )
-																	{
-																	    date_default_timezone_set('GMT');
-																	}
-																	
+								                    		<td mc:edit="date" style="color: #fefefe; font-size: 11px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">						                    
+								                    			<?php 							                    			
+								                    				if( ! ini_get('date.timezone') ) {date_default_timezone_set('GMT'); }																
 								                    				setlocale (LC_TIME, 'fr_FR');
 																	$dateFormat = date("d-m-Y");
-																	echo strftime("%A %d %B %Y",strtotime("$dateFormat")); 
-								                    				
-								                    			?>
-								                    			
+																	echo strftime("%A %d %B %Y",strtotime("$dateFormat")); 								                    				
+								                    			?>						                    			
 								                    		</td>
 								                    	</tr>
 				
 					                    			</table>
 					                    		</td>
 					                    	</tr>
-					                    </table>
-					                    
+					                    </table><!-- end icon calendar and date -->
 					                    <table border="0" align="left" width="10" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="top-header-right">
 					                    	<tr><td width="10" height="20"></td></tr>
-					                    </table>
-					                    
+					                    </table>    
 					                    <table border="0" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="top-header-right">
 					                    	<tr>
 					                    		<td align="center">
 					                    			<table border="0" cellpadding="0" cellspacing="0" align="center" class="tel">
 					                    				<tr>
-								                    		<td>
-									                    		<img editable="true" mc:edit="icon2" width="17" height="12" style="display: block;" src="<?php echo $url; ?>img/icon-email.png" alt="icon 2" />
-								                    		</td>
+								                    		<td><img editable="true" mc:edit="icon2" width="17" height="12" style="display: block;" src="<?php echo $url; ?>img/icon-email.png" alt="icon 2" /></td>
 								                    		<td>&nbsp;&nbsp;</td>
-								                    		<td mc:edit="tel" style="color: #fefefe; font-size: 11px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-								                    			
-								                    				<a style="color:#fff;text-decoration: none !important;" href="mailto:info@droitpourlepraticien.ch">info@droitpourlepraticien.ch</a>
-								                    			
+								                    		<td mc:edit="tel" style="color: #fefefe; font-size: 11px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">			
+								                    			<a style="color:#fff;text-decoration: none !important;" href="mailto:info@droitpourlepraticien.ch">info@droitpourlepraticien.ch</a>
 								                    		</td>
 								                    	</tr>
 					                    			</table>
@@ -196,8 +184,7 @@
 	                    		</tr>
 	                    	</table>
 	                    </td>
-                    </tr>
-                    
+                    </tr>                    
                     <tr bgcolor="43637c"><td height="10"></td></tr>                  
                 </table>
                 
@@ -208,27 +195,35 @@
                 <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="container" bgcolor="bccfdb">
               	<!-- ------- Header  -------- -->
                 	<tr bgcolor="bccfdb"><td height="20"></td></tr>
-                	
-                	<tr>
+                	<tr align="center">
 	                	<td>
 	                		<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="container-middle">
 	                			<tr>
 	                				<td>
-	                					<table border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="logo">
+	                					<table border="0" width="400" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="logo">
 				                			<tr>
+<<<<<<< HEAD
 				                				<td align="center">
 				                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;"><img editable="true" mc:edit="logo" width="282" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" /></a>
+=======
+				                				<td align="left">
+				                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;">
+				                						<img editable="true" mc:edit="logo" width="270" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" />
+				                					</a>
+>>>>>>> 9166966bc1fe8f89a9dbf3e727c45c1112b5fd54
 				                				</td>
 				                			</tr>
-				                		</table>		
-				                		<table border="0" width="10" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="nav">
+				                		</table>	
+				                	</td>
+				                	<td>		
+				                		<table border="0" width="10" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="nav">
 				                			<tr>
 				                				<td height="10" width="20"></td>
 				                			</tr>
 				                		</table>
-				                		
-						                <table border="0" width="95" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-		
+				                	</td>
+				                	<td>	
+						                <table border="0" width="150"  cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
 				                			<tr><td align="center" height="65" width="95">
 					                			<td>
 					                				<a href="http://www.unine.ch" target="_blank" style="width: 120px; display: block; border-style: none !important; border: 0 !important;">
@@ -236,7 +231,6 @@
 					                				</a>
 				                				</td>
 				                			</tr>
-			                			
 										</table>  
 				                		
 	                				</td>
@@ -245,70 +239,53 @@
 	                	</td>
                 	</tr>
                 	
-                	<tr>
+                	<tr align="center">
                 		<td>
-		                	
 		                	<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container-middle">
-	                			
 	                			<tr>
 	                				<td align="left" mc:edit="navigation" style="font-size: 14px; font-family: Helvetica, Arial, sans-serif;">
-	                					
-	                						<a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>"><strong>Accueil</strong></a>
-	                					
+	                					<a style="text-decoration: none !important; color: #0f4060" href="<?php echo $home; ?>"><strong>Accueil</strong></a>
 	                				</td>
 	                			</tr>
 	                			<tr><td height="10"></td></tr>
-	                		</table>		                	
-		                	              	
+	                		</table>		                	            	
 	                	</td>
                 	</tr>
                 	<!-- -------- end header ------- -->
-					
-					
+										
 					<!-- ------- main section ------- -->                	
-                	<tr mc:repeatable>
+                	<tr align="center">
                 		<td bgcolor="bccfdb">
-                			<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="container-middle">
-	                				
-	                			<tr bgcolor="ffffff"><td height="14"></td></tr>
-	                			
+                			<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="container-middle">	                				
+	                			<tr bgcolor="ffffff"><td height="14"></td></tr>                			
 	                			<tr bgcolor="ffffff"><td align="center">
 	                				<a href="<?php echo $home; ?>">
 	                					<img style="display: block;" mc:edit="main-img" class="main-image" width="538" height="180" src="<?php echo $url; ?>img/main-img.png" alt="derniers publications du TF" /></a>
-	                			</td></tr>
-	                			
-	                			<tr bgcolor="ffffff"><td height="20"></td></tr>
-	                			
+	                			</td></tr>                			
+	                			<tr bgcolor="ffffff"><td height="20"></td></tr>               			
 	                			<tr bgcolor="ffffff">
 	                				<td>
 	                					<table width="528" border="0" align="center" cellpadding="0" cellspacing="0" class="mainContent">
 	                						<tr>	
 	                							<td mc:edit="title1" class="main-header" style=" text-align:center; color: #0f4060; font-size: 16px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-				                					
 				                						Semaine du <strong><?php echo $ladate; ?></strong>
-				                					
 				                				</td>
 				                			</tr>		
 	                					</table>
 	                				</td>
-	                			</tr>
-	                			
-	                			<tr bgcolor="ffffff"><td align="center" height="14" width="560"></td></tr>
-	                			
-	
+	                			</tr>	                			
+	                			<tr bgcolor="ffffff"><td align="center" height="14" width="560"></td></tr>                			
                 			</table>
                 		</td>
                 	</tr><!-- ------- end main section ------- -->
-                	
-                	
+                	                	
                 	<tr mc:repeatable="campaigner" mc:variant="vertical space"><td height="35"></td></tr>
 
-<?php  foreach($arrets as $arret){ ?>
+					<?php  foreach($arrets as $arret){ ?>
                 	<!-- ------- section 1 ------- -->
-                	<tr>
+                	<tr align="center">
                 		<td>
                 			<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="container-middle">
-
                 				<tr bgcolor="fafafa">
                 					<td>
                 						<table width="528" border="0" align="center" cellpadding="0" cellspacing="0" class="mainContent">
@@ -317,12 +294,12 @@
                 								<td>
                 									<table border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="section-item">
                 										<tr><td height="6"></td></tr>
-                										<tr>
+                										<tr>&nbsp;
                 											<td>
                 												<?php $url_arret = $database->formatArretUrl($arret); ?>
                 												<a target="_blank" href="<?php echo $url_arret; ?>" style="width: 130px; display: block; border-style: none !important; border: 0 !important;">
 																	<img editable="true" mc:edit="image1" width="130" height="101" border="0" style="display: block;" src="<?php echo $url; ?>img/image1.png" alt="image1" class="section-img" />
-																	</a>
+																</a>
 															</td>
                 										</tr>
                 										<tr><td height="10"></td></tr>
@@ -361,31 +338,21 @@
                 									</table>
                 								</td>
                 							</tr>
-                							
                 							<tr><td height="20"></td></tr>
-                							
                 						</table>
                 					</td>
                 				</tr>
-                				
-
-                				
+     
                 			</table>
                 		</td>
                 	</tr><!-- ------- end section 1 ------- -->
-                	
-                	
-                	<tr><td height="35"></td></tr>
-                	
-<?php } ?>
-
-
+                	<tr><td height="35"></td></tr>	
+				<?php } ?>
                 </table>
                 
                 <!-- ---------- end main Content --------------- -->
 
-                <!-- -------- Ads  ------- -->
-                
+                <!-- -------- Ads  ------- -->  
                 <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" align="center">                	
                 	
                 	<tr bgcolor="43637c"><td height="15"></td></tr>
@@ -489,11 +456,9 @@ style="background-color:#912137;border:1px solid #732131;border-radius:4px;color
                 </table>
                 <!-- -------  end ads ------- -->         
                                                              
-                <!-- -------- footer  ------- -->
-                
+                <!-- -------- footer  ------- -->               
                 <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" align="center">
-                	<tr bgcolor="43637c"><td height="7"></td></tr>
-                	                	
+                	<tr bgcolor="43637c"><td height="7"></td></tr>                	                	
                 	<tr bgcolor="43637c">
                 		<td align="center" mc:edit="copy1" style="color: #d9e6ef; font-size: 13px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" class="prefooter-header">	                			                	Vous recevez cette newsletter car vous êtes inscrits sur le site <a style="color: #fff;" href="<?php echo $home; ?>">www.droitpraticien.ch</a>
                 		</td>
@@ -503,30 +468,24 @@ style="background-color:#912137;border:1px solid #732131;border-radius:4px;color
                 		<td align="center" mc:edit="copy1" style="color: #d9e6ef; font-size: 13px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;" class="prefooter-header">
 	                			Pour vous désinscrire de cette newsletter <a style="color: #fff;" href="<?php echo $unsuscribe; ?>">cliquez ici</a>	                		
                 		</td>
-                	</tr>	
-                	
-                	<tr bgcolor="43637c"><td height="20"></td></tr>
-                	
+                	</tr>	                	
+                	<tr bgcolor="43637c"><td height="20"></td></tr>                	
                 	<tr bgcolor="43637c">
                 		<td mc:edit="copy3" align="center" style="color: #fff; line-height:18px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;"> 
                 				<strong>Faculté de droit</strong><br/>
 								Avenue du 1er-Mars 26<br/>
 								2000 Neuchâtel    			            			
                 		</td>
-                	</tr>
-                	
-                	<tr bgcolor="43637c"><td height="10"></td></tr>
-                	
+                	</tr>               	
+                	<tr bgcolor="43637c"><td height="10"></td></tr>                	
                 	<tr bgcolor="43637c">
                 		<td mc:edit="copy3" align="center" style="color: #fff; font-size: 10px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;"> 			
                 				Droit pour le Praticien © Copyright <?php echo date('Y'); ?>                			
                 		</td>
-                	</tr>
-                	                	
+                	</tr>                	                	
                 	<tr bgcolor="43637c"><td height="14"></td></tr>
                 </table>
-                <!-- -------  end footer ------- -->
-       
+                <!-- -------  end footer ------- -->       
                 
             </td>
         </tr>

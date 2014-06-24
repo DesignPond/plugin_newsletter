@@ -505,10 +505,12 @@ class DD_Newsletter {
 			5: suscribe failed
 		*/
 		
+		$list  = get_option('dd_newsletter_list'); 
+		
 		if( isset($_POST['email']) &&  !empty($_POST['email']))
 		{
 			// test what we have to do!!! suscribe or unsuscribe
-			$attemp = $this->send->addOrDeleteUserFromList($_POST['email'], 'test' , $_POST['newsletter']);
+			$attemp = $this->send->addOrDeleteUserFromList($_POST['email'], $list , $_POST['newsletter']);
 				
 			if ( $_POST['newsletter'] == 'unsuscribe' ) 
 			{

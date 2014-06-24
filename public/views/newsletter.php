@@ -5,6 +5,9 @@
 	
 	// assets url for images and links
 	$url   = plugins_url().'/dd_newsletter/assets/';	
+	
+	// For now...
+	$url   = 'http://www.droitpourlepraticien.ch/newsletter/';	
 	$home  = home_url();
 	
 	// Unsuscribe link
@@ -214,7 +217,7 @@
 	                					<table border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="logo">
 				                			<tr>
 				                				<td align="center">
-				                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;"><img editable="true" mc:edit="logo" width="270" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" /></a>
+				                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;"><img editable="true" mc:edit="logo" width="282" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" /></a>
 				                				</td>
 				                			</tr>
 				                		</table>		
@@ -417,7 +420,7 @@
     										<tr>
     											<td width="10px"></td>
     											<td mc:edit="subtitle2" style="color: #0f4060; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-    												Grâce à l’achat de la dernière edition du livre <strong>Le droit pour le praticien</strong> pour seulement 79 CHF vous obtenez l'accès au site.										
+    												Avec l’achat, pour seulement CHF 79, de la dernière édition de l’ouvrage <strong>Le droit pour le praticien</strong>, vous obtenez l'accès au site <a target="_blank" style="color:#0f4060 !important;" href="<?php echo $more; ?>">www.droitpraticien.ch</a>
     											</td>
     											<td width="10px"></td>
     										</tr>
@@ -425,7 +428,7 @@
 											<tr>
 												<td width="10px"></td>
     											<td mc:edit="subtitle2" style="color: #083451; line-height: 22px; font-size: 12px; font-weight: normal; font-family: Helvetica, Arial, sans-serif;">
-														Durant une année vous pourrez alors:<br/>
+														Durant l’année en cours vous pourrez alors:<br/>
 														
 														<ul style="margin-left:5px;padding-left:15px;">
 															<li>Consulter les résumés de jurisprudence classées par thèmes</li>

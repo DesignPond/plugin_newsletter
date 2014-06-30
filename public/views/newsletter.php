@@ -64,57 +64,90 @@
 
         @media only screen and (max-width: 640px){
         
-
-            body[yahoo] .header-bg{width: 440px !important; height: 10px !important;}
-            body[yahoo] .main-header{line-height: 28px !important;}
-            body[yahoo] .main-subheader{line-height: 28px !important;}
+            body[yahoo] .header-bg,
+            body .header-bg{width: 440px !important; height: 10px !important;}
+            body[yahoo] .main-header,
+            body .main-header{line-height: 28px !important;}
+            body[yahoo] .main-subheader,
+            body .main-subheader{line-height: 28px !important;}
             
-            body[yahoo] .container{width: 440px !important;}
-            body[yahoo] .container-middle{width: 420px !important;}
-            body[yahoo] .mainContent{width: 400px !important;}
+            body[yahoo] .container,
+            body .container{width: 440px !important;}
+            body[yahoo] .container-middle,
+            body .container-middle{width: 420px !important;}
+            body[yahoo] .mainContent,
+            body .mainContent{width: 400px !important;}
             
-            body[yahoo] .main-image{width: 400px !important; height: auto !important;}
-            body[yahoo] .banner{width: 400px !important; height: auto !important;}
+            body[yahoo] .main-image,
+            body .main-image{width: 400px !important; height: auto !important;}
+            body[yahoo] .banner,
+            body .banner{width: 400px !important; height: auto !important;}
             /*------ sections ---------*/
-            body[yahoo] .section-item{width: 400px !important;}
-            body[yahoo] .section-img{width: 400px !important; height: auto !important;}
-            body[yahoo] .section-img2{width:240px !important; height: auto !important;}
+            body[yahoo] .section-item{,
+            body.section-item{width: 400px !important;}
+            body[yahoo] .section-img,
+            body .section-img{width: 400px !important; height: auto !important;}
+            body[yahoo] .section-img2,
+            body .section-img2{width:240px !important; height: auto !important;}
             /*------- prefooter ------*/
-            body[yahoo] .prefooter-header{padding: 0 10px !important; line-height: 24px !important;}
-            body[yahoo] .prefooter-subheader{padding: 0 10px !important; line-height: 24px !important;}
+            body[yahoo] .prefooter-header,
+            body .prefooter-header{padding: 0 10px !important; line-height: 24px !important;}
+            body[yahoo] .prefooter-subheader,
+            body .prefooter-subheader{padding: 0 10px !important; line-height: 24px !important;}
             /*------- footer ------*/
-            body[yahoo] .top-bottom-bg{width: 420px !important; height: auto !important;}
+            body[yahoo] .top-bottom-bg,
+            body .top-bottom-bg{width: 420px !important; height: auto !important;}
             
         }
         
         @media only screen and (max-width: 479px){
         
         	/*------ top header ------ */
-            body[yahoo] .header-bg{width: 280px !important; height: 10px !important;}
-            body[yahoo] .top-header-left{width: 260px !important; text-align: center !important;}
-            body[yahoo] .top-header-right{width: 260px !important;}
-            body[yahoo] .main-header{line-height: 28px !important; text-align: center !important;}
-            body[yahoo] .main-subheader{line-height: 28px !important; text-align: center !important;}
+            body[yahoo] .header-bg, 
+            body .header-bg{width: 280px !important; height: 10px !important;}
+            body[yahoo] .top-header-left,
+            body .top-header-left{width: 260px !important; text-align: center !important;}
+            body[yahoo] .top-header-right,
+            body .top-header-right{width: 260px !important;}
+            body[yahoo] .main-header,
+            body .main-header{line-height: 28px !important; text-align: center !important;}
+            body[yahoo] .main-subheader,
+            body .main-subheader{line-height: 28px !important; text-align: center !important;}
             
             /*------- header ----------*/
-            body[yahoo] .logo{width: 260px !important;}
-            body[yahoo] .nav{width: 260px !important;}
+            body[yahoo] .logo,
+            body .logo{width: 200px !important; height: auto !important;}
+            body[yahoo] .unine_logo,
+            body .unine_logo{width: 40px !important; height: auto !important;}            
+            body[yahoo] .nav,
+            body .nav{width: 260px !important;}
             
-            body[yahoo] .container{width: 280px !important;}
-            body[yahoo] .container-middle{width: 260px !important;}
-            body[yahoo] .mainContent{width: 240px !important;}
+            body[yahoo] .container,
+            body .container{width: 280px !important;}
+            body[yahoo] .container-middle,
+            body .container-middle{width: 260px !important;}
+            body[yahoo] .mainContent,
+            body .mainContent{width: 240px !important;}
             
-            body[yahoo] .main-image{width: 240px !important; height: auto !important;}
-            body[yahoo] .banner{width: 240px !important; height: auto !important;}
+            body[yahoo] .main-image,
+            body .main-image{width: 240px !important; height: auto !important;}
+            body[yahoo] .banner,
+            body .banner{width: 240px !important; height: auto !important;}
             /*------ sections ---------*/
-            body[yahoo] .section-item{width: 240px !important;}
-            body[yahoo] .section-img{width: 240px !important; height: auto !important;}
-			body[yahoo] .section-img2{width: 240px !important; height: auto !important;}
+            body[yahoo] .section-item,
+            body .section-item{width: 240px !important;}
+            body[yahoo] .section-img,
+            body.section-img{height: auto !important; padding-left: 20px; width: 140px !important;}
+			body[yahoo] .section-img2,
+			body .section-img2{width: 240px !important; height: auto !important;}
             /*------- prefooter ------*/
-            body[yahoo] .prefooter-header{padding: 0 10px !important;line-height: 28px !important;}
-            body[yahoo] .prefooter-subheader{padding: 0 10px !important; line-height: 28px !important;}
+            body[yahoo] .prefooter-header,
+            body .prefooter-header{padding: 0 10px !important;line-height: 28px !important;}
+            body[yahoo] .prefooter-subheader,
+            body .prefooter-subheader{padding: 0 10px !important; line-height: 28px !important;}
             /*------- footer ------*/
-            body[yahoo] .top-bottom-bg{width: 260px !important; height: auto !important;}
+            body[yahoo] .top-bottom-bg,
+            body .top-bottom-bg{width: 260px !important; height: auto !important;}
             
 	    }
 	    
@@ -196,36 +229,15 @@
 	                	<td>
 	                		<table border="0" width="560" align="center" cellpadding="0" cellspacing="0" class="container-middle">
 	                			<tr>
-	                				<td>
-	                					<table border="0" width="400" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="logo">
-				                			<tr>
-				                				<td align="left">
-				                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;">
-				                						<img editable="true" mc:edit="logo" width="270" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" />
-				                					</a>
-
-				                				</td>
-				                			</tr>
-				                		</table>	
+	                				<td align="left">
+	                					<a href="<?php echo $home; ?>" style="display: block;text-decoration: none !important; border-style: none !important; border: 0 !important;">
+	                						<img editable="true" class="logo" mc:edit="logo" width="270" height="35" border="0" style="display: block;" src="<?php echo $url; ?>img/logo.png" alt="logo" />
+	                					</a>              					
 				                	</td>
-				                	<td>		
-				                		<table border="0" width="10" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="nav">
-				                			<tr>
-				                				<td height="10" width="20"></td>
-				                			</tr>
-				                		</table>
-				                	</td>
-				                	<td>	
-						                <table border="0" width="150"  cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-				                			<tr><td align="center" height="65" width="95">
-					                			<td>
-					                				<a href="http://www.unine.ch" target="_blank" style="width: 120px; display: block; border-style: none !important; border: 0 !important;">
-					                					<img style="display: block;"  width="95" height="65" src="<?php echo $url; ?>img/unine.png" alt="unine" />
-					                				</a>
-				                				</td>
-				                			</tr>
-										</table>  
-				                		
+									<td align="right">
+		                				<a href="http://www.unine.ch" target="_blank" style="display: block; border-style: none !important; border: 0 !important;">
+		                					<img style="display: block;" class="unine_logo"  width="95" height="65" src="<?php echo $url; ?>img/unine.png" alt="unine" />
+		                				</a>
 	                				</td>
 	                			</tr>
 	                		</table>
@@ -407,21 +419,21 @@
 														<tr>
 														<td align="left">
 																<div><!--[if mso]>
-  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:24px;v-text-anchor:middle;width:120px;" arcsize="17%" strokecolor="#093450" fillcolor="#0f4060">
+  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:24px;v-text-anchor:middle;width:110px;" arcsize="17%" strokecolor="#093450" fillcolor="#0f4060">
     <w:anchorlock/>
-    <center style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:normal;">En savoir plus</center>
+    <center style="color:#ffffff;font-family:sans-serif;font-size:12px;font-weight:normal;">En savoir plus</center>
   </v:roundrect>
 <![endif]--><a target="_blank" href="<?php echo $more; ?>"
-style="background-color:#0f4060;border:1px solid #093450;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:normal;line-height:24px;text-align:center;text-decoration:none;width:120px;-webkit-text-size-adjust:none;mso-hide:all;">En savoir plus</a></div>
+style="background-color:#0f4060;border:1px solid #093450;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:12px;font-weight:normal;line-height:24px;text-align:center;text-decoration:none;width:110px;-webkit-text-size-adjust:none;mso-hide:all;">En savoir plus</a></div>
 															</td>
 															<td align="left">
 															<div><!--[if mso]>
-  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:24px;v-text-anchor:middle;width:120px;" arcsize="17%" strokecolor="#732131" fillcolor="#912137">
+  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:24px;v-text-anchor:middle;width:110px;" arcsize="17%" strokecolor="#732131" fillcolor="#912137">
     <w:anchorlock/>
-    <center style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:normal;">Obtenir le livre</center>
+    <center style="color:#ffffff;font-family:sans-serif;font-size:12px;font-weight:normal;">Obtenir le livre</center>
   </v:roundrect>
 <![endif]--><a target="_blank" href="http://publications-droit.ch"
-style="background-color:#912137;border:1px solid #732131;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:normal;line-height:24px;text-align:center;text-decoration:none;width:120px;-webkit-text-size-adjust:none;mso-hide:all;">Obtenir le livre</a></div>
+style="background-color:#912137;border:1px solid #732131;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:12px;font-weight:normal;line-height:24px;text-align:center;text-decoration:none;width:110px;-webkit-text-size-adjust:none;mso-hide:all;">Obtenir le livre</a></div>
 															</td>
 															
 														</tr>

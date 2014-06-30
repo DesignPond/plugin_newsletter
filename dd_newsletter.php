@@ -80,7 +80,7 @@ function add_schedule()
 	// Schedule an action if it's not already scheduled
 	if ( ! wp_next_scheduled( 'dd_weekly_newsletter' ) ) 
 	{
-	    wp_schedule_event( time(), 'weekly', 'dd_weekly_newsletter' );
+	    wp_schedule_event( time() + 600, 'weekly', 'dd_weekly_newsletter' );
 	}
 }
 
